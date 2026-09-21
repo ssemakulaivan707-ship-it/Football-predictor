@@ -472,6 +472,109 @@ function analyze(){
 }
 
 </script>
+async function loadLiveStats() {
+  const homeTeam = document.getElementById("homeTeam").value.trim();
+  const awayTeam = document.getElementById("awayTeam").value.trim();
 
+  if (!homeTeam || !awayTeam) {
+    alert("Enter both team names first.");
+    return;
+  }
+
+  try {
+    const response = await fetch("/api/football");
+    const data = await response.json();
+
+    if (!response.ok || !data.matches) {
+      throw new Error(data.error || "Live football data unavailable.");
+    }
+
+    const finished = data.matches.filter(m =>
+      m.status === "FINISHED" &&
+      m.score &&
+      m.score.fullTime &&
+      m.score.fullTime.home != null &&
+      m.score.fullTime.away != null
+    );
+
+    function statsFor(teamName) {
+      const target = teamName.toLowerCase();
+
+      const matches = finished
+        .filter(m =>
+          m.homeTeam.name.toLowerCase() === target ||
+          m.awayTeam.name.toLowerCase() === target
+        )
+        .sort((a, b) => new Date(b.utcDate) - new Date(a.utcDate))
+        .slice(0, 5);
+
+      let wins = 0;
+      let gf = 0;
+      let ga = 0;
+
+      matches.forEach(m => {
+        const isHome = m.homeTeam.name.toLowerCase() === target;
+        const scored = isHome
+          ? m.score.fullTime.home
+          : m.score.fullTime.away;
+        const conceded = isHome
+          ? m.score.fullTime.away
+          : m.score.fullTime.home;
+
+        gf += scored;
+        ga += conceded;
+
+        if (scored > conceded) wins++;
+      });
+
+      return {
+        wins,
+        gf: matches.length ? gf / matches.length : 0,
+        ga: matches.length ? ga / matches.length : 0,
+        games: matches.length
+      };
+    }
+
+    const h = statsFor(homeTeam);
+    const a = statsFor(awayTeam);
+
+    if (!h.games || !a.games) {
+      alert("I couldn't find completed matches for one or both teams. Check the team names.");
+      return;
+    }
+
+    document.getElementById("homeWins").value = h.wins;
+    document.getElementById("homeGF").value = h.gf.toFixed(1);
+    document.getElementById("homeGA").value = h.ga.toFixed(1);
+
+    document.getElementById("awayWins").value = a.wins;
+    document.getElementById("awayGF").value = a.gf.toFixed(1);
+    document.getElementById("awayGA").value = a.ga.toFixed(1);
+
+    alert("Live recent-form data loaded. Now tap Analyze Match.");
+  } catch (error) {
+    alert("Live data error: " + error.message);
+  }
+}
+
+window.addEventListener("load", () => {
+  const button = document.createElement("button");
+
+  button.textContent = "⚡ Load Live Data";
+  button.type = "button";
+
+  button.style.cssText =
+    "display:block;width:100%;margin:12px 0;padding:13px;border:0;border-radius:10px;background:#1764d8;color:white;font-size:16px;font-weight:bold;";
+
+  button.onclick = loadLiveStats;
+
+  const container = document.querySelector(".container");
+  const firstCard = container ? container.querySelector(".card") : null;
+
+  if (firstCard) {
+    firstCard.insertBefore(button, firstCard.firstChild);
+  }
+});
+</script>   
 </body>
 </html>
