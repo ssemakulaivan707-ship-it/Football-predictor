@@ -89,4 +89,1164 @@
     }
 
     input:focus {
-      border-color: #4da3
+      border-color: #4da3ff;
+    }
+
+    button {
+      width: 100%;
+      padding: 13px;
+      border: none;
+      border-radius: 9px;
+      background: #1976d2;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    .live-btn {
+      background: #168a55;
+    }
+
+    .injury-btn {
+      background: #a85d18;
+    }
+
+    .status {
+      margin-top: 10px;
+      font-size: 13px;
+      color: #9fb0c9;
+      min-height: 18px;
+    }
+
+    .match-title {
+      text-align: center;
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    .result-box {
+      background: #0c1627;
+      border: 1px solid #263b58;
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .result-box h3 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      color: #9fb0c9;
+    }
+
+    .big-number {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .green {
+      color: #42d392;
+    }
+
+    .yellow {
+      color: #ffd166;
+    }
+
+    .red {
+      color: #ff7070;
+    }
+
+    .blue {
+      color: #57a8ff;
+    }
+
+    .score-main {
+      font-size: 38px;
+      font-weight: bold;
+      margin: 5px 0;
+    }
+
+    .score-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 11px 0;
+      border-bottom: 1px solid #25344b;
+    }
+
+    .score-row:last-child {
+      border-bottom: none;
+    }
+
+    .market {
+      background: #0c1627;
+      border: 1px solid #263b58;
+      border-radius: 12px;
+      padding: 15px;
+    }
+
+    .market-title {
+      color: #aebbd0;
+      font-size: 13px;
+      margin-bottom: 7px;
+    }
+
+    .market-value {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .note {
+      font-size: 12px;
+      color: #8798b1;
+      line-height: 1.5;
+      margin-top: 12px;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .injury-section {
+      margin-top: 15px;
+    }
+
+    .injury-section h3 {
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 5px 9px;
+      border-radius: 20px;
+      background: #26344d;
+      color: #c8d4e7;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
+    footer {
+      text-align: center;
+      color: #6f819c;
+      font-size: 12px;
+      margin-top: 25px;
+    }
+
+    @media (max-width: 700px) {
+      .grid,
+      .three-grid,
+      .four-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 25px;
+      }
+
+      .match-title {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <header>
+    <h1>⚽ Football Predictor Pro</h1>
+    <p>Match analysis & statistical prediction</p>
+  </header>
+
+  <!-- TEAM INPUT -->
+  <div class="card">
+    <h2>🏟️ Match</h2>
+
+    <div class="grid">
+      <div>
+        <label>Home Team</label>
+        <input id="homeTeam" value="Arsenal">
+      </div>
+
+      <div>
+        <label>Away Team</label>
+        <input id="awayTeam" value="Chelsea">
+      </div>
+    </div>
+
+    <button id="liveButton" class="live-btn">
+      ⚡ Load Live Data
+    </button>
+
+    <div id="liveStatus" class="status"></div>
+  </div>
+
+
+  <!-- TEAM STATS -->
+  <div class="card">
+    <h2>📊 Team Statistics</h2>
+
+    <div class="grid">
+
+      <div>
+        <label>Home Wins — Last 5</label>
+        <input id="homeWins" type="number" min="0" max="5" value="3">
+      </div>
+
+      <div>
+        <label>Away Wins — Last 5</label>
+        <input id="awayWins" type="number" min="0" max="5" value="2">
+      </div>
+
+      <div>
+        <label>Home Goals For — Average</label>
+        <input id="homeGF" type="number" step="0.01" min="0" value="1.8">
+      </div>
+
+      <div>
+        <label>Away Goals For — Average</label>
+        <input id="awayGF" type="number" step="0.01" min="0" value="1.4">
+      </div>
+
+      <div>
+        <label>Home Goals Against — Average</label>
+        <input id="homeGA" type="number" step="0.01" min="0" value="1.0">
+      </div>
+
+      <div>
+        <label>Away Goals Against — Average</label>
+        <input id="awayGA" type="number" step="0.01" min="0" value="1.2">
+      </div>
+
+      <div>
+        <label>Home Advantage / Strength (0–10)</label>
+        <input id="homeAdv" type="number" min="0" max="10" value="7">
+      </div>
+
+      <div>
+        <label>Away Strength (0–10)</label>
+        <input id="awayAdv" type="number" min="0" max="10" value="6">
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- INJURIES -->
+  <div class="card">
+    <h2>🩹 Injury Impact</h2>
+
+    <div class="grid">
+
+      <div class="injury-section">
+        <h3>Home Team</h3>
+
+        <label>Key Attackers Out</label>
+        <input id="homeAttackInjuries" type="number" min="0" max="5" value="0">
+
+        <label style="margin-top:10px;">Key Defenders Out</label>
+        <input id="homeDefenseInjuries" type="number" min="0" max="5" value="0">
+      </div>
+
+      <div class="injury-section">
+        <h3>Away Team</h3>
+
+        <label>Key Attackers Out</label>
+        <input id="awayAttackInjuries" type="number" min="0" max="5" value="0">
+
+        <label style="margin-top:10px;">Key Defenders Out</label>
+        <input id="awayDefenseInjuries" type="number" min="0" max="5" value="0">
+      </div>
+
+    </div>
+
+    <button id="injuryButton" class="injury-btn">
+      🩹 Apply Injury Impact
+    </button>
+
+    <div id="injuryStatus" class="status">
+      No injury adjustment applied.
+    </div>
+
+    <div class="note">
+      Each missing key attacker reduces attacking output.
+      Missing key defenders increase the opponent's expected goals.
+      This is a statistical adjustment, not official medical information.
+    </div>
+  </div>
+
+
+  <!-- ANALYZE -->
+  <div class="card">
+    <button id="analyzeButton">
+      🔎 Analyze Match
+    </button>
+  </div>
+
+
+  <!-- RESULTS -->
+  <div id="results" class="hidden">
+
+    <div class="card">
+
+      <div id="matchTitle" class="match-title">
+        Arsenal vs Chelsea
+      </div>
+
+      <div class="three-grid">
+
+        <div class="result-box">
+          <h3>HOME WIN</h3>
+          <div id="homeWinProb" class="big-number green">0%</div>
+        </div>
+
+        <div class="result-box">
+          <h3>DRAW</h3>
+          <div id="drawProb" class="big-number yellow">0%</div>
+        </div>
+
+        <div class="result-box">
+          <h3>AWAY WIN</h3>
+          <div id="awayWinProb" class="big-number red">0%</div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- EXPECTED GOALS -->
+    <div class="card">
+      <h2>📈 Expected Goals</h2>
+
+      <div class="three-grid">
+
+        <div class="result-box">
+          <h3>HOME xG</h3>
+          <div id="homeXG" class="big-number blue">0.00</div>
+        </div>
+
+        <div class="result-box">
+          <h3>TOTAL xG</h3>
+          <div id="totalXG" class="big-number">0.00</div>
+        </div>
+
+        <div class="result-box">
+          <h3>AWAY xG</h3>
+          <div id="awayXG" class="big-number red">0.00</div>
+        </div>
+
+      </div>
+
+      <div id="injuryBadge"></div>
+    </div>
+
+
+    <!-- EXACT SCORE -->
+    <div class="card">
+      <h2>🎯 Exact Score Prediction</h2>
+
+      <div class="result-box">
+        <div id="mainScore" class="score-main">
+          1 - 1
+        </div>
+
+        <div id="mainScoreProbability">
+          0%
+        </div>
+
+        <div class="badge">
+          Most probable exact score
+        </div>
+      </div>
+
+      <br>
+
+      <div class="three-grid">
+
+        <div class="market">
+          <div class="market-title">#2 Exact Score</div>
+          <div id="score2" class="market-value">-</div>
+          <div id="score2Prob" class="note">0%</div>
+        </div>
+
+        <div class="market">
+          <div class="market-title">#3 Exact Score</div>
+          <div id="score3" class="market-value">-</div>
+          <div id="score3Prob" class="note">0%</div>
+        </div>
+
+        <div class="market">
+          <div class="market-title">Model Range</div>
+          <div class="market-value">0–8</div>
+          <div class="note">Goals per team</div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- PRO MARKETS -->
+    <div class="card">
+      <h2>📊 Pro Markets</h2>
+
+      <div class="four-grid">
+
+        <div class="market">
+          <div class="market-title">OVER 2.5</div>
+          <div id="over25" class="market-value green">0%</div>
+        </div>
+
+        <div class="market">
+          <div class="market-title">UNDER 2.5</div>
+          <div id="under25" class="market-value blue">0%</div>
+        </div>
+
+        <div class="market">
+          <div class="market-title">BTTS — YES</div>
+          <div id="bttsYes" class="market-value green">0%</div>
+        </div>
+
+        <div class="market">
+          <div class="market-title">BTTS — NO</div>
+          <div id="bttsNo" class="market-value red">0%</div>
+        </div>
+
+        <div class="market">
+          <div class="market-title">HOME TO SCORE</div>
+          <div id="homeToScore" class="market-value green">0%</div>
+        </div>
+
+        <div class="market">
+          <div class="market-title">AWAY TO SCORE</div>
+          <div id="awayToScore" class="market-value green">0%</div>
+        </div>
+
+        <div class="market">
+          <div class="market-title">HOME CLEAN SHEET</div>
+          <div id="homeCleanSheet" class="market-value blue">0%</div>
+        </div>
+
+        <div class="market">
+          <div class="market-title">AWAY CLEAN SHEET</div>
+          <div id="awayCleanSheet" class="market-value blue">0%</div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- FORM -->
+    <div class="card">
+      <h2>📋 Prediction Summary</h2>
+
+      <div class="score-row">
+        <span>Home win</span>
+        <strong id="summaryHome">0%</strong>
+      </div>
+
+      <div class="score-row">
+        <span>Draw</span>
+        <strong id="summaryDraw">0%</strong>
+      </div>
+
+      <div class="score-row">
+        <span>Away win</span>
+        <strong id="summaryAway">0%</strong>
+      </div>
+
+      <div class="score-row">
+        <span>Over 2.5 goals</span>
+        <strong id="summaryOver">0%</strong>
+      </div>
+
+      <div class="score-row">
+        <span>BTTS</span>
+        <strong id="summaryBTTS">0%</strong>
+      </div>
+
+      <div class="note">
+        Probabilities are model estimates based on the supplied statistics,
+        recent form and injury adjustments. They are not guarantees of match outcomes.
+      </div>
+    </div>
+
+  </div>
+
+
+  <footer>
+    Football Predictor Pro • Statistical model • For analysis and education
+  </footer>
+
+</div>
+
+
+<script>
+
+  /* ================================
+     BASIC HELPERS
+  ================================= */
+
+  function clamp(value, min, max) {
+    return Math.max(min, Math.min(max, value));
+  }
+
+  function percentage(value) {
+    return Math.round(value * 100) + "%";
+  }
+
+  function poissonProbability(lambda, goals) {
+    if (lambda <= 0) {
+      return goals === 0 ? 1 : 0;
+    }
+
+    let factorial = 1;
+
+    for (let i = 2; i <= goals; i++) {
+      factorial *= i;
+    }
+
+    return Math.exp(-lambda) * Math.pow(lambda, goals) / factorial;
+  }
+
+
+  /* ================================
+     TEAM NAME NORMALIZATION
+  ================================= */
+
+  function normalizeTeamName(name) {
+    return String(name || "")
+      .toLowerCase()
+      .replace(/\b(fc|afc|cf)\b/g, "")
+      .replace(/[^a-z0-9]/g, "");
+  }
+
+
+  /* ================================
+     INJURY DATA
+  ================================= */
+
+  function getInjuryAdjustments() {
+
+    const homeAttack =
+      clamp(Number(document.getElementById("homeAttackInjuries").value) || 0, 0, 5);
+
+    const awayAttack =
+      clamp(Number(document.getElementById("awayAttackInjuries").value) || 0, 0, 5);
+
+    const homeDefense =
+      clamp(Number(document.getElementById("homeDefenseInjuries").value) || 0, 0, 5);
+
+    const awayDefense =
+      clamp(Number(document.getElementById("awayDefenseInjuries").value) || 0, 0, 5);
+
+    return {
+      homeAttack,
+      awayAttack,
+      homeDefense,
+      awayDefense,
+
+      homeAttackFactor: Math.max(0.65, 1 - homeAttack * 0.10),
+      awayAttackFactor: Math.max(0.65, 1 - awayAttack * 0.10),
+
+      homeDefenseFactor: 1 + homeDefense * 0.08,
+      awayDefenseFactor: 1 + awayDefense * 0.08
+    };
+  }
+
+
+  document.getElementById("injuryButton").addEventListener("click", function() {
+
+    const injury = getInjuryAdjustments();
+
+    const total =
+      injury.homeAttack +
+      injury.awayAttack +
+      injury.homeDefense +
+      injury.awayDefense;
+
+    const status = document.getElementById("injuryStatus");
+
+    if (total === 0) {
+      status.textContent = "No injury adjustment applied.";
+    } else {
+      status.textContent =
+        "✓ Injury impact applied. Run Analyze Match to update the prediction.";
+    }
+
+  });
+
+
+  /* ================================
+     LIVE DATA
+  ================================= */
+
+  async function loadLiveStats() {
+
+    const homeName =
+      document.getElementById("homeTeam").value.trim();
+
+    const awayName =
+      document.getElementById("awayTeam").value.trim();
+
+    const status =
+      document.getElementById("liveStatus");
+
+    if (!homeName || !awayName) {
+      status.textContent = "Enter both team names first.";
+      return;
+    }
+
+    status.textContent = "⏳ Loading recent Premier League data...";
+
+    try {
+
+      const response = await fetch("/api/football");
+
+      if (!response.ok) {
+        throw new Error("API request failed");
+      }
+
+      const data = await response.json();
+
+      const matches = Array.isArray(data.matches)
+        ? data.matches
+        : [];
+
+      const homeKey = normalizeTeamName(homeName);
+      const awayKey = normalizeTeamName(awayName);
+
+      const homeMatches = matches
+        .filter(match =>
+          match.status === "FINISHED" &&
+          match.score &&
+          match.score.fullTime &&
+          (
+            normalizeTeamName(match.homeTeam?.name) === homeKey ||
+            normalizeTeamName(match.awayTeam?.name) === homeKey
+          )
+        )
+        .sort((a, b) =>
+          new Date(b.utcDate) - new Date(a.utcDate)
+        )
+        .slice(0, 5);
+
+      const awayMatches = matches
+        .filter(match =>
+          match.status === "FINISHED" &&
+          match.score &&
+          match.score.fullTime &&
+          (
+            normalizeTeamName(match.homeTeam?.name) === awayKey ||
+            normalizeTeamName(match.awayTeam?.name) === awayKey
+          )
+        )
+        .sort((a, b) =>
+          new Date(b.utcDate) - new Date(a.utcDate)
+        )
+        .slice(0, 5);
+
+
+      function calculateStats(teamKey, teamMatches) {
+
+        let wins = 0;
+        let goalsFor = 0;
+        let goalsAgainst = 0;
+
+        teamMatches.forEach(match => {
+
+          const homeScore =
+            Number(match.score.fullTime.home) || 0;
+
+          const awayScore =
+            Number(match.score.fullTime.away) || 0;
+
+          const isHome =
+            normalizeTeamName(match.homeTeam?.name) === teamKey;
+
+          const gf = isHome ? homeScore : awayScore;
+          const ga = isHome ? awayScore : homeScore;
+
+          goalsFor += gf;
+          goalsAgainst += ga;
+
+          if (gf > ga) {
+            wins++;
+          }
+        });
+
+        const count = teamMatches.length || 1;
+
+        return {
+          games: teamMatches.length,
+          wins,
+          gf: goalsFor / count,
+          ga: goalsAgainst / count
+        };
+      }
+
+
+      const homeStats =
+        calculateStats(homeKey, homeMatches);
+
+      const awayStats =
+        calculateStats(awayKey, awayMatches);
+
+
+      if (homeStats.games === 0 && awayStats.games === 0) {
+
+        status.textContent =
+          "No matching completed matches were found. Try the team name used in the competition.";
+
+        return;
+      }
+
+
+      if (homeStats.games > 0) {
+
+        document.getElementById("homeWins").value =
+          homeStats.wins;
+
+        document.getElementById("homeGF").value =
+          homeStats.gf.toFixed(2);
+
+        document.getElementById("homeGA").value =
+          homeStats.ga.toFixed(2);
+      }
+
+
+      if (awayStats.games > 0) {
+
+        document.getElementById("awayWins").value =
+          awayStats.wins;
+
+        document.getElementById("awayGF").value =
+          awayStats.gf.toFixed(2);
+
+        document.getElementById("awayGA").value =
+          awayStats.ga.toFixed(2);
+      }
+
+
+      status.textContent =
+        `✓ Live form loaded: ${homeStats.games} ${homeName} matches, ${awayStats.games} ${awayName} matches.`;
+
+    } catch (error) {
+
+      console.error(error);
+
+      status.textContent =
+        "⚠️ Could not load live data. Check your API/Vercel deployment.";
+    }
+  }
+
+
+  document
+    .getElementById("liveButton")
+    .addEventListener("click", loadLiveStats);
+
+
+  /* ================================
+     MAIN ANALYSIS
+  ================================= */
+
+  function analyze() {
+
+    const homeTeam =
+      document.getElementById("homeTeam").value.trim() || "Home";
+
+    const awayTeam =
+      document.getElementById("awayTeam").value.trim() || "Away";
+
+
+    const homeWins =
+      clamp(Number(document.getElementById("homeWins").value) || 0, 0, 5);
+
+    const awayWins =
+      clamp(Number(document.getElementById("awayWins").value) || 0, 0, 5);
+
+    const homeGF =
+      Math.max(0, Number(document.getElementById("homeGF").value) || 0);
+
+    const awayGF =
+      Math.max(0, Number(document.getElementById("awayGF").value) || 0);
+
+    const homeGA =
+      Math.max(0, Number(document.getElementById("homeGA").value) || 0);
+
+    const awayGA =
+      Math.max(0, Number(document.getElementById("awayGA").value) || 0);
+
+    const homeAdv =
+      clamp(Number(document.getElementById("homeAdv").value) || 0, 0, 10);
+
+    const awayAdv =
+      clamp(Number(document.getElementById("awayAdv").value) || 0, 0, 10);
+
+
+    /* Injury factors */
+
+    const injury = getInjuryAdjustments();
+
+
+    /* ================================
+       EXPECTED GOALS MODEL
+    ================================= */
+
+    let homeXG =
+      ((homeGF + awayGA) / 2);
+
+    let awayXG =
+      ((awayGF + homeGA) / 2);
+
+
+    /* Form factor */
+
+    const homeFormFactor =
+      0.90 + (homeWins / 5) * 0.20;
+
+    const awayFormFactor =
+      0.90 + (awayWins / 5) * 0.20;
+
+
+    homeXG *= homeFormFactor;
+    awayXG *= awayFormFactor;
+
+
+    /* Home advantage */
+
+    const homeAdvFactor =
+      1 + (homeAdv / 10) * 0.12;
+
+    const awayStrengthFactor =
+      0.94 + (awayAdv / 10) * 0.10;
+
+
+    homeXG *= homeAdvFactor;
+    awayXG *= awayStrengthFactor;
+
+
+    /* Injuries */
+
+    homeXG *= injury.homeAttackFactor;
+    awayXG *= injury.awayAttackFactor;
+
+    homeXG *= injury.awayDefenseFactor;
+    awayXG *= injury.homeDefenseFactor;
+
+
+    /* Keep the model realistic */
+
+    homeXG = clamp(homeXG, 0.05, 5);
+    awayXG = clamp(awayXG, 0.05, 5);
+
+
+    /* ================================
+       POISSON SCORE MATRIX
+    ================================= */
+
+    const scoreMatrix = [];
+
+    for (let homeGoals = 0; homeGoals <= 8; homeGoals++) {
+
+      for (let awayGoals = 0; awayGoals <= 8; awayGoals++) {
+
+        const probability =
+          poissonProbability(homeXG, homeGoals) *
+          poissonProbability(awayXG, awayGoals);
+
+        scoreMatrix.push({
+          home: homeGoals,
+          away: awayGoals,
+          probability
+        });
+      }
+    }
+
+
+    scoreMatrix.sort(
+      (a, b) => b.probability - a.probability
+    );
+
+
+    /* ================================
+       1X2
+    ================================= */
+
+    let homeWin = 0;
+    let draw = 0;
+    let awayWin = 0;
+
+    scoreMatrix.forEach(score => {
+
+      if (score.home > score.away) {
+        homeWin += score.probability;
+      }
+
+      else if (score.home === score.away) {
+        draw += score.probability;
+      }
+
+      else {
+        awayWin += score.probability;
+      }
+
+    });
+
+
+    const total =
+      homeWin + draw + awayWin;
+
+    homeWin /= total;
+    draw /= total;
+    awayWin /= total;
+
+
+    /* ================================
+       OVER / UNDER 2.5
+    ================================= */
+
+    let under25 = 0;
+
+    for (let h = 0; h <= 8; h++) {
+
+      for (let a = 0; a <= 8; a++) {
+
+        if (h + a <= 2) {
+
+          under25 +=
+            poissonProbability(homeXG, h) *
+            poissonProbability(awayXG, a);
+        }
+      }
+    }
+
+    const over25 =
+      1 - under25;
+
+
+    /* ================================
+       BTTS
+    ================================= */
+
+    const homeZero =
+      poissonProbability(homeXG, 0);
+
+    const awayZero =
+      poissonProbability(awayXG, 0);
+
+    const bttsNo =
+      homeZero +
+      awayZero -
+      (homeZero * awayZero);
+
+    const bttsYes =
+      1 - bttsNo;
+
+
+    /* ================================
+       TEAM TO SCORE
+    ================================= */
+
+    const homeToScore =
+      1 - homeZero;
+
+    const awayToScore =
+      1 - awayZero;
+
+
+    /* ================================
+       CLEAN SHEETS
+    ================================= */
+
+    const homeCleanSheet =
+      awayZero;
+
+    const awayCleanSheet =
+      homeZero;
+
+
+    /* ================================
+       DISPLAY 1X2
+    ================================= */
+
+    document.getElementById("homeWinProb").textContent =
+      percentage(homeWin);
+
+    document.getElementById("drawProb").textContent =
+      percentage(draw);
+
+    document.getElementById("awayWinProb").textContent =
+      percentage(awayWin);
+
+
+    /* ================================
+       DISPLAY xG
+    ================================= */
+
+    document.getElementById("homeXG").textContent =
+      homeXG.toFixed(2);
+
+    document.getElementById("awayXG").textContent =
+      awayXG.toFixed(2);
+
+    document.getElementById("totalXG").textContent =
+      (homeXG + awayXG).toFixed(2);
+
+
+    /* ================================
+       DISPLAY MAIN SCORE
+    ================================= */
+
+    const best =
+      scoreMatrix[0];
+
+    document.getElementById("mainScore").textContent =
+      `${best.home} - ${best.away}`;
+
+    document.getElementById("mainScoreProbability").textContent =
+      percentage(best.probability);
+
+
+    /* ================================
+       TOP 3 SCORES
+    ================================= */
+
+    const second =
+      scoreMatrix[1];
+
+    const third =
+      scoreMatrix[2];
+
+    document.getElementById("score2").textContent =
+      `${second.home} - ${second.away}`;
+
+    document.getElementById("score2Prob").textContent =
+      percentage(second.probability);
+
+
+    document.getElementById("score3").textContent =
+      `${third.home} - ${third.away}`;
+
+    document.getElementById("score3Prob").textContent =
+      percentage(third.probability);
+
+
+    /* ================================
+       PRO MARKETS
+    ================================= */
+
+    document.getElementById("over25").textContent =
+      percentage(over25);
+
+    document.getElementById("under25").textContent =
+      percentage(under25);
+
+    document.getElementById("bttsYes").textContent =
+      percentage(bttsYes);
+
+    document.getElementById("bttsNo").textContent =
+      percentage(bttsNo);
+
+    document.getElementById("homeToScore").textContent =
+      percentage(homeToScore);
+
+    document.getElementById("awayToScore").textContent =
+      percentage(awayToScore);
+
+    document.getElementById("homeCleanSheet").textContent =
+      percentage(homeCleanSheet);
+
+    document.getElementById("awayCleanSheet").textContent =
+      percentage(awayCleanSheet);
+
+
+    /* ================================
+       SUMMARY
+    ================================= */
+
+    document.getElementById("summaryHome").textContent =
+      percentage(homeWin);
+
+    document.getElementById("summaryDraw").textContent =
+      percentage(draw);
+
+    document.getElementById("summaryAway").textContent =
+      percentage(awayWin);
+
+    document.getElementById("summaryOver").textContent =
+      percentage(over25);
+
+    document.getElementById("summaryBTTS").textContent =
+      percentage(bttsYes);
+
+
+    /* ================================
+       MATCH TITLE
+    ================================= */
+
+    document.getElementById("matchTitle").textContent =
+      `${homeTeam} vs ${awayTeam}`;
+
+
+    /* ================================
+       INJURY BADGE
+    ================================= */
+
+    const injuryTotal =
+      injury.homeAttack +
+      injury.awayAttack +
+      injury.homeDefense +
+      injury.awayDefense;
+
+    const injuryBadge =
+      document.getElementById("injuryBadge");
+
+    if (injuryTotal > 0) {
+
+      injuryBadge.innerHTML =
+        `<span class="badge">🩹 Injury-adjusted model</span>`;
+
+    } else {
+
+      injuryBadge.innerHTML =
+        `<span class="badge">✓ No injury adjustment</span>`;
+    }
+
+
+    /* ================================
+       SHOW RESULTS
+    ================================= */
+
+    document
+      .getElementById("results")
+      .classList.remove("hidden");
+
+
+    /* Scroll to result */
+
+    document
+      .getElementById("results")
+      .scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+  }
+
+
+  document
+    .getElementById("analyzeButton")
+    .addEventListener("click", analyze);
+
+
+</script>
+
+</body>
+</html>
