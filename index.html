@@ -574,7 +574,165 @@ window.addEventListener("load", () => {
   if (firstCard) {
     firstCard.insertBefore(button, firstCard.firstChild);
   }
-});
+});// ===============================
+// INJURY & AVAILABILITY ANALYSIS
+// ===============================
+
+function addInjuryPanel() {
+  if (document.getElementById("injuryPanel")) return;
+
+  const panel = document.createElement("div");
+  panel.id = "injuryPanel";
+
+  panel.innerHTML = `
+    <div style="
+      margin-top:18px;
+      padding:18px;
+      border-radius:14px;
+      background:#111827;
+      color:white;
+      box-shadow:0 4px 15px rgba(0,0,0,.15);
+    ">
+      <h2 style="margin:0 0 6px;">🚑 Team Availability</h2>
+      <p style="margin:0 0 15px;color:#b8c1cc;font-size:14px;">
+        Enter unavailable players so the prediction can adjust attacking
+        and defensive strength.
+      </p>
+
+      <div style="
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        gap:12px;
+      ">
+
+        <div>
+          <label style="font-size:13px;">🏠 Home key attackers out</label>
+          <input id="homeAttackOut" type="number" min="0" max="5" value="0"
+            style="width:100%;padding:11px;margin-top:5px;border-radius:8px;border:0;">
+        </div>
+
+        <div>
+          <label style="font-size:13px;">✈️ Away key attackers out</label>
+          <input id="awayAttackOut" type="number" min="0" max="5" value="0"
+            style="width:100%;padding:11px;margin-top:5px;border-radius:8px;border:0;">
+        </div>
+
+        <div>
+          <label style="font-size:13px;">🛡️ Home key defenders out</label>
+          <input id="homeDefOut" type="number" min="0" max="5" value="0"
+            style="width:100%;padding:11px;margin-top:5px;border-radius:8px;border:0;">
+        </div>
+
+        <div>
+          <label style="font-size:13px;">🛡️ Away key defenders out</label>
+          <input id="awayDefOut" type="number" min="0" max="5" value="0"
+            style="width:100%;padding:11px;margin-top:5px;border-radius:8px;border:0;">
+        </div>
+
+      </div>
+
+      <button id="applyInjuriesBtn" type="button" style="
+        width:100%;
+        margin-top:15px;
+        padding:13px;
+        border:0;
+        border-radius:9px;
+        background:#dc2626;
+        color:white;
+        font-size:15px;
+        font-weight:bold;
+      ">
+        🚑 Apply Injury Impact
+      </button>
+
+      <div id="injuryImpactResult" style="
+        margin-top:12px;
+        padding:10px;
+        border-radius:8px;
+        background:#1f2937;
+        font-size:14px;
+        display:none;
+      "></div>
+    </div>
+  `;
+
+  const container = document.querySelector(".container");
+
+  if (container) {
+    container.appendChild(panel);
+  }
+
+  document.getElementById("applyInjuriesBtn").onclick = applyInjuryImpact;
+}
+
+
+// Calculate injury effect
+function applyInjuryImpact() {
+
+  const homeAttack =
+    Number(document.getElementById("homeAttackOut").value) || 0;
+
+  const awayAttack =
+    Number(document.getElementById("awayAttackOut").value) || 0;
+
+  const homeDef =
+    Number(document.getElementById("homeDefOut").value) || 0;
+
+  const awayDef =
+    Number(document.getElementById("awayDefOut").value) || 0;
+
+
+  // Each key attacking player unavailable
+  // reduces attacking strength.
+  const homeAttackFactor =
+    Math.max(0.65, 1 - homeAttack * 0.10);
+
+  const awayAttackFactor =
+    Math.max(0.65, 1 - awayAttack * 0.10);
+
+
+  // Missing defenders make the opponent slightly more dangerous.
+  const homeDefFactor =
+    1 + homeDef * 0.08;
+
+  const awayDefFactor =
+    1 + awayDef * 0.08;
+
+
+  window.injuryAdjustments = {
+    homeAttackFactor,
+    awayAttackFactor,
+    homeDefFactor,
+    awayDefFactor
+  };
+
+
+  const result =
+    document.getElementById("injuryImpactResult");
+
+  result.style.display = "block";
+
+  result.innerHTML = `
+    <b>Injury impact applied</b><br><br>
+
+    🏠 Home attack:
+    ${Math.round((1 - homeAttackFactor) * 100)}% reduction<br>
+
+    ✈️ Away attack:
+    ${Math.round((1 - awayAttackFactor) * 100)}% reduction<br>
+
+    🏠 Home defence:
+    ${Math.round((homeDefFactor - 1) * 100)}% vulnerability<br>
+
+    ✈️ Away defence:
+    ${Math.round((awayDefFactor - 1) * 100)}% vulnerability
+  `;
+}
+
+
+// Add panel after page loads
+window.addEventListener("load", addInjuryPanel);
+    
 </script>   
 </body>
 </html>
