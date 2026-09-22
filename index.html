@@ -2,220 +2,866 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Football Predictor Pro</title>
 
 <style>
-*{
-    box-sizing:border-box;
-}
-
+*{box-sizing:border-box}
 body{
-    margin:0;
-    background:#07111f;
-    color:#edf4ff;
-    font-family:Arial,Helvetica,sans-serif;
+  margin:0;
+  font-family:Arial,sans-serif;
+  background:#0b1020;
+  color:#fff;
 }
-
 .container{
-    max-width:1100px;
-    margin:auto;
-    padding:18px;
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
 }
-
 header{
-    text-align:center;
-    padding:20px 10px;
+  text-align:center;
+  margin-bottom:25px;
 }
-
 header h1{
-    margin:0;
-    font-size:30px;
+  margin:0;
+  font-size:30px;
 }
-
 header p{
-    color:#91a2ba;
-    margin-top:8px;
+  color:#9ca3af;
 }
-
 .card{
-    background:#101c2d;
-    border:1px solid #263750;
-    border-radius:14px;
-    padding:18px;
-    margin-bottom:18px;
+  background:#121a2d;
+  border:1px solid #26324d;
+  border-radius:14px;
+  padding:20px;
+  margin-bottom:20px;
 }
-
-.card h2{
-    margin-top:0;
+h2{
+  margin-top:0;
 }
-
 button{
-    background:#2563eb;
-    color:white;
-    border:0;
-    border-radius:8px;
-    padding:11px 16px;
-    font-weight:bold;
-    cursor:pointer;
+  border:0;
+  border-radius:8px;
+  padding:12px 18px;
+  cursor:pointer;
+  font-weight:bold;
+  background:#2563eb;
+  color:white;
 }
-
 button:hover{
-    opacity:.88;
+  opacity:.9;
 }
-
 input{
-    width:100%;
-    background:#091423;
-    color:white;
-    border:1px solid #344761;
-    border-radius:8px;
-    padding:12px;
-    margin-top:6px;
+  width:100%;
+  padding:11px;
+  border-radius:7px;
+  border:1px solid #334155;
+  background:#0f172a;
+  color:#fff;
 }
-
 .grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:14px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:15px;
 }
-
-.injury-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:14px;
+.three{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
 }
-
-.result-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
+.stat-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
 }
-
-.result-box{
-    background:#0a1525;
-    border:1px solid #263750;
-    border-radius:10px;
-    padding:15px;
-    text-align:center;
+.stat{
+  background:#0d1527;
+  padding:12px;
+  border-radius:9px;
+  text-align:center;
 }
-
-.result-box h3{
-    color:#91a2ba;
-    font-size:12px;
-    margin:0 0 8px;
+.stat b{
+  display:block;
+  font-size:20px;
+  margin-top:5px;
 }
-
-.big{
-    font-size:27px;
-    font-weight:bold;
-}
-
-.status{
-    color:#9cafc7;
-    font-size:14px;
-    margin-top:12px;
-}
-
-.small{
-    color:#8295ae;
-    font-size:12px;
-    line-height:1.5;
-}
-
 .fixture{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:12px;
-    background:#0a1525;
-    border:1px solid #263750;
-    border-radius:10px;
-    padding:13px;
-    margin-top:10px;
+  background:#0d1527;
+  border:1px solid #26324d;
+  border-radius:10px;
+  padding:14px;
+  margin-bottom:10px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
 }
-
-.fixture-date{
-    color:#8396b0;
-    font-size:12px;
-    margin-bottom:5px;
+.fixture-info{
+  flex:1;
 }
-
-.fixture-match{
-    font-weight:bold;
-    line-height:1.45;
+.small{
+  color:#9ca3af;
+  font-size:13px;
 }
-
-.stats-table{
-    width:100%;
-    border-collapse:collapse;
-    margin-top:12px;
+.status{
+  margin-top:10px;
+  color:#9ca3af;
 }
-
-.stats-table th,
-.stats-table td{
-    padding:9px 6px;
-    border-bottom:1px solid #263750;
-    text-align:center;
+.result{
+  font-size:28px;
+  font-weight:bold;
 }
-
-.stats-table th{
-    color:#91a2ba;
-    font-size:12px;
+.prob{
+  font-size:22px;
 }
-
-.form{
-    font-weight:bold;
-    letter-spacing:2px;
-}
-
-.section-title{
-    margin:22px 0 10px;
-    font-weight:bold;
-}
-
-.score-list{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
-}
-
-.score{
-    background:#0a1525;
-    border:1px solid #263750;
-    border-radius:9px;
-    padding:14px;
-    text-align:center;
-}
-
-.summary{
-    background:#0a1525;
-    border-radius:9px;
-    padding:13px;
-    margin-top:9px;
-    line-height:1.55;
-}
-
 .badge{
-    display:inline-block;
-    padding:5px 10px;
-    border-radius:20px;
-    background:#263750;
-    color:#c5d1e0;
-    font-size:12px;
+  display:inline-block;
+  padding:6px 10px;
+  border-radius:20px;
+  background:#1e3a8a;
+  margin:4px;
+  font-size:13px;
 }
-
-.confidence{
-    text-align:center;
-    padding:16px;
-    background:#0a1525;
-    border-radius:10px;
-    margin-top:12px;
+.green{
+  color:#4ade80;
 }
-
+.yellow{
+  color:#facc15;
+}
+.red{
+  color:#f87171;
+}
+.hidden{
+  display:none;
+}
+.center{
+  text-align:center;
+}
 @media(max-width:700px){
+  .grid,.three,.stat-grid{
+    grid-template-columns:1fr 1fr;
+  }
+  .fixture{
+    flex-direction:column;
+    align-items:stretch;
+  }
+}
+</style>
+</head>
 
-    .grid,
-    .injury-grid,
-   
+<body>
+
+<div class="container">
+
+<header>
+  <h1>⚽ Football Predictor Pro</h1>
+  <p>Match analysis & statistical prediction</p>
+</header>
+
+<!-- REAL FIXTURES -->
+<div class="card">
+  <h2>📅 Real Premier League Fixtures</h2>
+  <button id="refreshFixtures">Refresh Fixtures</button>
+  <div id="fixturesStatus" class="status">Loading fixtures...</div>
+  <div id="fixturesList"></div>
+</div>
+
+<!-- MATCH -->
+<div class="card">
+  <h2>⚽ Match</h2>
+
+  <div class="grid">
+    <div>
+      <label>Home Team</label>
+      <input id="homeTeam" placeholder="Home team">
+    </div>
+
+    <div>
+      <label>Away Team</label>
+      <input id="awayTeam" placeholder="Away team">
+    </div>
+  </div>
+
+  <br>
+
+  <button id="analyzeButton">🔮 Analyze Match</button>
+</div>
+
+<!-- AUTOMATIC STATS -->
+<div class="card">
+  <h2>📊 Automatic Team Statistics</h2>
+
+  <div id="teamStatsStatus" class="status">
+    Select a fixture or enter teams manually.
+  </div>
+
+  <div class="grid">
+
+    <div>
+      <h3 id="statsHomeTeam">Home Team</h3>
+
+      <div class="stat-grid">
+        <div class="stat">Wins<b id="homeWinsDisplay">0</b></div>
+        <div class="stat">Draws<b id="homeDrawsDisplay">0</b></div>
+        <div class="stat">Losses<b id="homeLossesDisplay">0</b></div>
+        <div class="stat">GF<b id="homeGFDisplay">0</b></div>
+        <div class="stat">GA<b id="homeGADisplay">0</b></div>
+        <div class="stat">Avg GF<b id="homeAvgDisplay">0</b></div>
+        <div class="stat">Clean<b id="homeCleanDisplay">0%</b></div>
+        <div class="stat">BTTS<b id="homeBTTSDisplay">0%</b></div>
+        <div class="stat">Over 2.5<b id="homeOverDisplay">0%</b></div>
+      </div>
+
+      <p>Recent form:</p>
+      <strong id="homeForm">-</strong>
+    </div>
+
+    <div>
+      <h3 id="statsAwayTeam">Away Team</h3>
+
+      <div class="stat-grid">
+        <div class="stat">Wins<b id="awayWinsDisplay">0</b></div>
+        <div class="stat">Draws<b id="awayDrawsDisplay">0</b></div>
+        <div class="stat">Losses<b id="awayLossesDisplay">0</b></div>
+        <div class="stat">GF<b id="awayGFDisplay">0</b></div>
+        <div class="stat">GA<b id="awayGADisplay">0</b></div>
+        <div class="stat">Avg GF<b id="awayAvgDisplay">0</b></div>
+        <div class="stat">Clean<b id="awayCleanDisplay">0%</b></div>
+        <div class="stat">BTTS<b id="awayBTTSDisplay">0%</b></div>
+        <div class="stat">Over 2.5<b id="awayOverDisplay">0%</b></div>
+      </div>
+
+      <p>Recent form:</p>
+      <strong id="awayForm">-</strong>
+    </div>
+
+  </div>
+</div>
+
+<!-- HIDDEN MODEL VALUES -->
+<input type="hidden" id="homeWins" value="2">
+<input type="hidden" id="awayWins" value="2">
+<input type="hidden" id="homeGF" value="1.5">
+<input type="hidden" id="awayGF" value="1.5">
+<input type="hidden" id="homeGA" value="1.5">
+<input type="hidden" id="awayGA" value="1.5">
+
+<!-- INJURIES -->
+<div class="card">
+  <h2>🩹 Injury Adjustment</h2>
+
+  <div class="grid">
+    <div>
+      <h3>Home Team</h3>
+
+      <label>Attack Injuries</label>
+      <input id="homeAttackInjuries" type="number" min="0" value="0">
+
+      <br><br>
+
+      <label>Defense Injuries</label>
+      <input id="homeDefenseInjuries" type="number" min="0" value="0">
+    </div>
+
+    <div>
+      <h3>Away Team</h3>
+
+      <label>Attack Injuries</label>
+      <input id="awayAttackInjuries" type="number" min="0" value="0">
+
+      <br><br>
+
+      <label>Defense Injuries</label>
+      <input id="awayDefenseInjuries" type="number" min="0" value="0">
+    </div>
+  </div>
+
+  <br>
+
+  <button id="injuryButton">Apply Injury Adjustment</button>
+
+  <div id="injuryStatus" class="status">
+    No injury adjustment applied.
+  </div>
+
+  <input type="hidden" id="injuryApplied" value="0">
+</div>
+
+<!-- RESULTS -->
+<div id="results" class="card hidden">
+
+  <div class="center">
+    <h2 id="matchTitle">Prediction</h2>
+    <div id="injuryBadge"></div>
+  </div>
+
+  <hr>
+
+  <h2>🎯 Match Result</h2>
+
+  <div class="three">
+
+    <div class="stat">
+      <div>Home Win</div>
+      <b class="prob green" id="homeWinProb">0%</b>
+    </div>
+
+    <div class="stat">
+      <div>Draw</div>
+      <b class="prob yellow" id="drawProb">0%</b>
+    </div>
+
+    <div class="stat">
+      <div>Away Win</div>
+      <b class="prob red" id="awayWinProb">0%</b>
+    </div>
+
+  </div>
+
+  <br>
+
+  <h2>📈 Expected Goals</h2>
+
+  <div class="three">
+    <div class="stat">
+      Home xG
+      <b id="homeXG">0</b>
+    </div>
+
+    <div class="stat">
+      Total xG
+      <b id="totalXG">0</b>
+    </div>
+
+    <div class="stat">
+      Away xG
+      <b id="awayXG">0</b>
+    </div>
+  </div>
+
+  <br>
+
+  <h2>🎯 Exact Score</h2>
+
+  <div class="three">
+
+    <div class="stat">
+      <div>Most Likely</div>
+      <b id="mainScore">-</b>
+      <span id="mainScoreProbability">0%</span>
+    </div>
+
+    <div class="stat">
+      <div>2nd</div>
+      <b id="score2">-</b>
+      <span id="score2Prob">0%</span>
+    </div>
+
+    <div class="stat">
+      <div>3rd</div>
+      <b id="score3">-</b>
+      <span id="score3Prob">0%</span>
+    </div>
+
+  </div>
+
+  <br>
+
+  <h2>⚽ Goal Markets</h2>
+
+  <div class="three">
+
+    <div class="stat">
+      Over 2.5
+      <b id="over25">0%</b>
+    </div>
+
+    <div class="stat">
+      Under 2.5
+      <b id="under25">0%</b>
+    </div>
+
+    <div class="stat">
+      BTTS Yes
+      <b id="bttsYes">0%</b>
+    </div>
+
+  </div>
+
+  <br>
+
+  <div class="three">
+
+    <div class="stat">
+      BTTS No
+      <b id="bttsNo">0%</b>
+    </div>
+
+    <div class="stat">
+      Home To Score
+      <b id="homeToScore">0%</b>
+    </div>
+
+    <div class="stat">
+      Away To Score
+      <b id="awayToScore">0%</b>
+    </div>
+
+  </div>
+
+  <br>
+
+  <h2>🧤 Clean Sheet</h2>
+
+  <div class="three">
+
+    <div class="stat">
+      Home Clean Sheet
+      <b id="homeCleanSheet">0%</b>
+    </div>
+
+    <div class="stat">
+      Away Clean Sheet
+      <b id="awayCleanSheet">0%</b>
+    </div>
+
+    <div class="stat">
+      Total xG
+      <b id="summaryOver">0</b>
+    </div>
+
+  </div>
+
+  <br>
+
+  <h2>📝 Analysis Summary</h2>
+
+  <div class="stat">
+    <p id="summaryHome">-</p>
+    <p id="summaryDraw">-</p>
+    <p id="summaryAway">-</p>
+    <p id="summaryBTTS">-</p>
+  </div>
+
+</div>
+
+</div>
+
+<script>
+
+let currentMatches = [];
+
+const $ = id => document.getElementById(id);
+
+function clamp(value,min,max){
+  return Math.max(min,Math.min(max,value));
+}
+
+function percentage(value){
+  return Math.round(value * 100) + "%";
+}
+
+function poissonProbability(lambda,k){
+  let factorial=1;
+
+  for(let i=2;i<=k;i++){
+    factorial*=i;
+  }
+
+  return Math.exp(-lambda) *
+         Math.pow(lambda,k) /
+         factorial;
+}
+
+function normalizeTeamName(name){
+  return String(name || "")
+    .toLowerCase()
+    .replace(/\b(fc|afc|cf)\b/g,"")
+    .replace(/[^a-z0-9]/g,"");
+}
+
+/* =========================
+   FIXTURES
+========================= */
+
+async function loadFixtures(){
+
+  $("fixturesStatus").textContent="Loading real fixtures...";
+  $("fixturesList").innerHTML="";
+
+  try{
+
+    const response=await fetch("/api/football");
+
+    const data=await response.json();
+
+    if(!response.ok){
+      throw new Error(data.error || "Could not load fixtures");
+    }
+
+    currentMatches=data.matches || [];
+
+    const now=new Date();
+
+    const fixtures=currentMatches
+      .filter(match =>
+        (match.status==="SCHEDULED" ||
+         match.status==="TIMED") &&
+        new Date(match.utcDate)>=now
+      )
+      .sort((a,b)=>
+        new Date(a.utcDate)-new Date(b.utcDate)
+      )
+      .slice(0,20);
+
+    if(!fixtures.length){
+
+      $("fixturesStatus").textContent=
+        "No upcoming Premier League fixtures found.";
+
+      return;
+    }
+
+    $("fixturesStatus").textContent=
+      fixtures.length+" upcoming fixtures";
+
+    fixtures.forEach(match=>{
+
+      const div=document.createElement("div");
+      div.className="fixture";
+
+      const date=new Date(match.utcDate);
+
+      div.innerHTML=`
+        <div class="fixture-info">
+          <strong>${match.homeTeam.name}</strong>
+          vs
+          <strong>${match.awayTeam.name}</strong>
+          <div class="small">
+            ${date.toLocaleDateString()}
+            ${date.toLocaleTimeString([],{
+              hour:"2-digit",
+              minute:"2-digit"
+            })}
+          </div>
+        </div>
+
+        <button>
+          🔮 Predict
+        </button>
+      `;
+
+      div.querySelector("button").onclick=()=>{
+        selectFixture(
+          match.homeTeam.name,
+          match.awayTeam.name
+        );
+      };
+
+      $("fixturesList").appendChild(div);
+
+    });
+
+  }catch(error){
+
+    $("fixturesStatus").textContent=
+      "Fixture error: "+error.message;
+
+  }
+
+}
+
+/* =========================
+   SELECT FIXTURE
+========================= */
+
+async function selectFixture(home,away){
+
+  $("homeTeam").value=home;
+  $("awayTeam").value=away;
+
+  $("injuryApplied").value="0";
+
+  $("homeAttackInjuries").value=0;
+  $("awayAttackInjuries").value=0;
+  $("homeDefenseInjuries").value=0;
+  $("awayDefenseInjuries").value=0;
+
+  $("injuryStatus").textContent=
+    "No injury adjustment applied.";
+
+  await loadTeamStatistics(home,away);
+
+  analyze();
+
+  $("results").scrollIntoView({
+    behavior:"smooth"
+  });
+
+}
+
+/* =========================
+   TEAM STATISTICS
+========================= */
+
+async function loadTeamStatistics(home,away){
+
+  $("teamStatsStatus").textContent=
+    "Loading last 5 finished matches...";
+
+  try{
+
+    if(!currentMatches.length){
+
+      const response=await fetch("/api/football");
+
+      const data=await response.json();
+
+      currentMatches=data.matches || [];
+
+    }
+
+    const homeName=normalizeTeamName(home);
+    const awayName=normalizeTeamName(away);
+
+    const finished=currentMatches.filter(
+      match=>match.status==="FINISHED"
+    );
+
+    function getTeamMatches(team){
+
+      const normalized=normalizeTeamName(team);
+
+      return finished
+        .filter(match=>
+          normalizeTeamName(match.homeTeam.name)===normalized ||
+          normalizeTeamName(match.awayTeam.name)===normalized
+        )
+        .sort((a,b)=>
+          new Date(b.utcDate)-new Date(a.utcDate)
+        )
+        .slice(0,5);
+    }
+
+    const homeMatches=getTeamMatches(home);
+    const awayMatches=getTeamMatches(away);
+
+    const homeStats=calculateStats(homeName,homeMatches);
+    const awayStats=calculateStats(awayName,awayMatches);
+
+    displayStats(
+      "home",
+      home,
+      homeStats
+    );
+
+    displayStats(
+      "away",
+      away,
+      awayStats
+    );
+
+    $("teamStatsStatus").textContent=
+      "Statistics based on recent finished matches.";
+
+  }catch(error){
+
+    $("teamStatsStatus").textContent=
+      "Statistics error: "+error.message;
+
+  }
+
+}
+
+function calculateStats(team,matches){
+
+  let wins=0;
+  let draws=0;
+  let losses=0;
+  let gf=0;
+  let ga=0;
+  let clean=0;
+  let btts=0;
+  let over=0;
+
+  const form=[];
+
+  matches.forEach(match=>{
+
+    const home=normalizeTeamName(match.homeTeam.name);
+    const away=normalizeTeamName(match.awayTeam.name);
+
+    const hg=match.score.fullTime.home ?? 0;
+    const ag=match.score.fullTime.away ?? 0;
+
+    let scored;
+    let conceded;
+
+    if(home===team){
+
+      scored=hg;
+      conceded=ag;
+
+      if(hg>ag){
+        wins++;
+        form.push("W");
+      }else if(hg===ag){
+        draws++;
+        form.push("D");
+      }else{
+        losses++;
+        form.push("L");
+      }
+
+    }else{
+
+      scored=ag;
+      conceded=hg;
+
+      if(ag>hg){
+        wins++;
+        form.push("W");
+      }else if(ag===hg){
+        draws++;
+        form.push("D");
+      }else{
+        losses++;
+        form.push("L");
+      }
+
+    }
+
+    gf+=scored;
+    ga+=conceded;
+
+    if(conceded===0){
+      clean++;
+    }
+
+    if(scored>0 && conceded>0){
+      btts++;
+    }
+
+    if(scored+conceded>2){
+      over++;
+    }
+
+  });
+
+  const games=matches.length || 1;
+
+  return {
+    wins,
+    draws,
+    losses,
+    gf,
+    ga,
+    avg:gf/games,
+    clean:clean/games,
+    btts:btts/games,
+    over:over/games,
+    form:form.join(" ")
+  };
+
+}
+
+function displayStats(side,team,stats){
+
+  $(side==="home" ?
+    "statsHomeTeam":"statsAwayTeam"
+  ).textContent=team;
+
+  $(side==="home" ?
+    "homeWinsDisplay":"awayWinsDisplay"
+  ).textContent=stats.wins;
+
+  $(side==="home" ?
+    "homeDrawsDisplay":"awayDrawsDisplay"
+  ).textContent=stats.draws;
+
+  $(side==="home" ?
+    "homeLossesDisplay":"awayLossesDisplay"
+  ).textContent=stats.losses;
+
+  $(side==="home" ?
+    "homeGFDisplay":"awayGFDisplay"
+  ).textContent=stats.gf;
+
+  $(side==="home" ?
+    "homeGADisplay":"awayGADisplay"
+  ).textContent=stats.ga;
+
+  $(side==="home" ?
+    "homeAvgDisplay":"awayAvgDisplay"
+  ).textContent=stats.avg.toFixed(2);
+
+  $(side==="home" ?
+    "homeCleanDisplay":"awayCleanDisplay"
+  ).textContent=percentage(stats.clean);
+
+  $(side==="home" ?
+    "homeBTTSDisplay":"awayBTTSDisplay"
+  ).textContent=percentage(stats.btts);
+
+  $(side==="home" ?
+    "homeOverDisplay":"awayOverDisplay"
+  ).textContent=percentage(stats.over);
+
+  $(side==="home" ?
+    "homeForm":"awayForm"
+  ).textContent=stats.form || "-";
+
+  if(side==="home"){
+
+    $("homeWins").value=
+      stats.wins || 2;
+
+    $("homeGF").value=
+      stats.avg || 1.5;
+
+    $("homeGA").value=
+      stats.ga/(stats.wins+stats.draws+stats.losses || 1) || 1.5;
+
+  }else{
+
+    $("awayWins").value=
+      stats.wins || 2;
+
+    $("awayGF").value=
+      stats.avg || 1.5;
+
+    $("awayGA").value=
+      stats.ga/(stats.wins+stats.draws+stats.losses || 1) || 1.5;
+
+  }
+
+}
+
+/* =========================
+   INJURIES
+========================= */
+
+$("injuryButton").onclick=()=>{
+
+  $("injuryApplied").value="1";
+
+  const ha=Number($("homeAttackInjuries").value)||0;
+  const hd=Number($("homeDefenseInjuries").value)||0;
+  const aa=Number($("awayAttackInjuries").value)||0;
+  const ad=Number($("awayDefenseInjuries").value)||0;
+
+  $("injuryStatus").textContent=
+    `Applied: Home attack ${ha}, defense ${hd}; `+
+    `Away attack ${aa}, defense ${ad}.`;
+
+};
+
+/* =========================
+   ANALYSIS
+========================= */
+
+$("analyzeButton").onclick=analyze;
+
+function analyze(){
+
+  const home=$("homeTeam").
