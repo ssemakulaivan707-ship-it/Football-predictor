@@ -732,6 +732,91 @@ function applyInjuryImpact() {
 
 // Add panel after page loads
 window.addEventListener("load", addInjuryPanel);
+    // ==========================================
+// PRO MARKETS - SAFE ADDITION
+// ==========================================
+
+function showProMarkets() {
+
+  const home =
+    document.getElementById("homeTeam").value.trim() || "Home";
+
+  const away =
+    document.getElementById("awayTeam").value.trim() || "Away";
+
+  const hGF =
+    Number(document.getElementById("homeGF").value) || 1;
+
+  const hGA =
+    Number(document.getElementById("homeGA").value) || 1;
+
+  const aGF =
+    Number(document.getElementById("awayGF").value) || 1;
+
+  const aGA =
+    Number(document.getElementById("awayGA").value) || 1;
+
+
+  // Expected goals
+  let homeXG = ((hGF + aGA) / 2) * 1.08;
+  let awayXG = ((aGF + hGA) / 2) * 0.95;
+
+
+  // Apply injury adjustments if available
+  const injury = window.injuryAdjustments;
+
+  if (injury) {
+    homeXG *= injury.homeAttackFactor * injury.awayDefFactor;
+    awayXG *= injury.awayAttackFactor * injury.homeDefFactor;
+  }
+
+
+  homeXG = Math.max(0.15, Math.min(homeXG, 4.5));
+  awayXG = Math.max(0.15, Math.min(awayXG, 4.5));
+
+
+  function poisson(g, xg) {
+    let fact = 1;
+
+    for (let i = 2; i <= g; i++) {
+      fact *= i;
+    }
+
+    return Math.exp(-xg) * Math.pow(xg, g) / fact;
+  }
+
+
+  // Find exact-score probabilities
+  let scores = [];
+
+  for (let h = 0; h <= 7; h++) {
+    for (let a = 0; a <= 7; a++) {
+
+      scores.push({
+        h: h,
+        a: a,
+        p: poisson(h, homeXG) * poisson(a, awayXG)
+      });
+
+    }
+  }
+
+  scores.sort((x, y) => y.p - x.p);
+
+  const topScores = scores.slice(0, 3);
+
+
+  // Goal markets
+  const total = homeXG + awayXG;
+
+  const under25 =
+    Math.exp(-total) *
+    (1 + total + (total * total) / 2);
+
+  const over25 = 1 - under25;
+
+  const homeZero = Math.exp(-homeXG);
+  const awayZero = Math.exp
   </script>
   </body>
   </html>
