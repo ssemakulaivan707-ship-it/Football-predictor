@@ -8,15 +8,20 @@ export default async function handler(req, res) {
       });
     }
 
+    // 12 competitions
     const allowedLeagues = [
-      "PL",
-      "PD",
-      "BL1",
-      "SA",
-      "FL1",
-      "DED",
-      "PPL",
-      "CL"
+      "PL",    // England Premier League
+      "ELC",   // England Championship
+      "PD",    // Spain La Liga
+      "SD",    // Spain Segunda Division
+      "BL1",   // Germany Bundesliga
+      "BL2",   // Germany 2. Bundesliga
+      "SA",    // Italy Serie A
+      "SB",    // Italy Serie B
+      "FL1",   // France Ligue 1
+      "FL2",   // France Ligue 2
+      "DED",   // Netherlands Eredivisie
+      "CL"     // Champions League
     ];
 
     const url = new URL(
@@ -60,7 +65,7 @@ export default async function handler(req, res) {
     );
 
     return res.status(200).json({
-      league: league,
+      league,
       competition: data.competition || {},
       matches: data.matches || []
     });
