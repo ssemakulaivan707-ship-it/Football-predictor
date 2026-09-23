@@ -2,183 +2,269 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Football Predictor Pro</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Football Predictor</title>
 
 <style>
-*{
-  box-sizing:border-box;
+* {
+  box-sizing: border-box;
 }
 
-body{
-  margin:0;
-  font-family:Arial,sans-serif;
-  background:#07111f;
-  color:#fff;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #08111f;
+  color: #fff;
 }
 
-.container{
-  max-width:900px;
-  margin:auto;
-  padding:15px;
+.container {
+  width: 94%;
+  max-width: 900px;
+  margin: auto;
+  padding: 18px 0 40px;
 }
 
-h1{
-  text-align:center;
-  margin:10px 0 5px;
+h1 {
+  text-align: center;
+  margin: 5px 0 4px;
+  font-size: 28px;
 }
 
-.subtitle{
-  text-align:center;
-  color:#9fb1c8;
-  margin-bottom:20px;
+.subtitle {
+  text-align: center;
+  color: #9fb0c7;
+  margin-bottom: 20px;
 }
 
-.card{
-  background:#101d2d;
-  border:1px solid #24364d;
-  border-radius:14px;
-  padding:16px;
-  margin-bottom:15px;
+.card {
+  background: #101c2d;
+  border: 1px solid #20324a;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 15px;
 }
 
-h2{
-  margin-top:0;
-}
-
-label{
-  display:block;
-  margin-top:10px;
-  margin-bottom:6px;
-  color:#b9c9dc;
-}
-
-select,
-input,
-button{
-  width:100%;
-  padding:13px;
-  border-radius:9px;
-  border:1px solid #344b65;
-  font-size:15px;
+label {
+  display: block;
+  margin-bottom: 7px;
+  color: #b9c8dc;
+  font-size: 14px;
 }
 
 select,
-input{
-  background:#081522;
-  color:white;
+input {
+  width: 100%;
+  padding: 13px;
+  border-radius: 9px;
+  border: 1px solid #31445f;
+  background: #0a1423;
+  color: white;
+  font-size: 15px;
 }
 
-button{
-  background:#1677ff;
-  color:white;
-  border:0;
-  font-weight:bold;
-  margin-top:12px;
+.match-title {
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 5px 0;
 }
 
-button:active{
-  opacity:.8;
+.match-date {
+  text-align: center;
+  color: #94a6bd;
+  font-size: 13px;
 }
 
-.status{
-  color:#9fb1c8;
-  margin-top:10px;
-  font-size:14px;
+.form-title {
+  font-weight: bold;
+  margin-bottom: 12px;
 }
 
-.fixture{
-  background:#081522;
-  border:1px solid #29415c;
-  border-radius:10px;
-  padding:12px;
-  margin-top:8px;
-  cursor:pointer;
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
 }
 
-.fixture:hover{
-  border-color:#1680ff;
+.form-box {
+  background: #0a1423;
+  border-radius: 10px;
+  padding: 13px;
+  text-align: center;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:10px;
+.team-name {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
-@media(max-width:600px){
-  .grid{
-    grid-template-columns:1fr;
+.form-row {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.form-letter {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 13px;
+}
+
+.win {
+  background: #16a34a;
+}
+
+.loss {
+  background: #dc2626;
+}
+
+.draw {
+  background: white;
+  color: #111;
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.result-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.result-box {
+  background: #0a1423;
+  padding: 12px 7px;
+  border-radius: 9px;
+  text-align: center;
+}
+
+.result-name {
+  font-size: 12px;
+  color: #aebed1;
+}
+
+.result-value {
+  font-size: 21px;
+  font-weight: bold;
+  margin-top: 5px;
+}
+
+.hot {
+  border: 2px solid #ff9f1c;
+  background: linear-gradient(135deg, #211708, #151c29);
+  text-align: center;
+}
+
+.hot-title {
+  color: #ffb52e;
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.hot-name {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 8px 0;
+}
+
+.hot-percent {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.hot-note {
+  color: #9daec3;
+  font-size: 12px;
+  margin-top: 7px;
+}
+
+.score-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.score {
+  background: #0a1423;
+  padding: 13px;
+  border-radius: 9px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.stats {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.stats th,
+.stats td {
+  padding: 9px 5px;
+  border-bottom: 1px solid #24364d;
+  text-align: center;
+}
+
+.stats th {
+  color: #9fb1c8;
+}
+
+.loading {
+  text-align: center;
+  color: #9fb1c8;
+  padding: 15px;
+}
+
+.error {
+  color: #ff7777;
+  text-align: center;
+  padding: 10px;
+}
+
+details {
+  margin-top: 10px;
+}
+
+summary {
+  cursor: pointer;
+  color: #9fb9d6;
+  padding: 8px 0;
+}
+
+.injury-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.small {
+  color: #91a4bc;
+  font-size: 12px;
+}
+
+@media(max-width:600px) {
+  .result-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
-}
 
-.resultGrid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:8px;
-}
+  .score-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
-.resultBox{
-  background:#081522;
-  border-radius:10px;
-  padding:12px;
-  text-align:center;
-}
-
-.big{
-  font-size:24px;
-  font-weight:bold;
-}
-
-.small{
-  color:#9fb1c8;
-  font-size:13px;
-}
-
-.green{
-  color:#37e68c;
-}
-
-.red{
-  color:#ff6577;
-}
-
-.yellow{
-  color:#ffd45a;
-}
-
-.score{
-  font-size:30px;
-  font-weight:bold;
-  text-align:center;
-  margin:12px;
-}
-
-.hidden{
-  display:none;
-}
-
-.statRow{
-  display:flex;
-  justify-content:space-between;
-  padding:7px 0;
-  border-bottom:1px solid #1d3044;
-}
-
-.warning{
-  background:#392b08;
-  color:#ffd45a;
-  padding:10px;
-  border-radius:8px;
-  margin-top:10px;
-}
-
-.success{
-  background:#092d20;
-  color:#4df09b;
-  padding:10px;
-  border-radius:8px;
-  margin-top:10px;
+  .form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 </style>
 </head>
@@ -187,939 +273,942 @@ button:active{
 
 <div class="container">
 
-<h1>⚽ Football Predictor Pro</h1>
-<div class="subtitle">
-League-based football prediction engine
-</div>
+  <h1>⚽ Football Predictor</h1>
 
-<!-- LEAGUE -->
-<div class="card">
+  <div class="subtitle">
+    Choose a league and match — analysis appears automatically
+  </div>
 
-<h2>🌍 1. Select League</h2>
+  <!-- LEAGUE -->
+  <div class="card">
 
-<label>League</label>
+    <label>Select League</label>
 
-<select id="leagueSelect">
-<option value="PL">🏴 Premier League</option>
-<option value="PD">🇪🇸 La Liga</option>
-<option value="BL1">🇩🇪 Bundesliga</option>
-<option value="SA">🇮🇹 Serie A</option>
-<option value="FL1">🇫🇷 Ligue 1</option>
-<option value="DED">🇳🇱 Eredivisie</option>
-<option value="PPL">🇵🇹 Primeira Liga</option>
-<option value="CL">🏆 Champions League</option>
-</select>
+    <select id="leagueSelect">
+      <optgroup label="🏴 England">
+        <option value="PL">Premier League</option>
+        <option value="ELC">Championship</option>
+      </optgroup>
 
-<button id="loadFixtures">
-🔄 Load Fixtures
-</button>
+      <optgroup label="🇪🇸 Spain">
+        <option value="PD">La Liga</option>
+        <option value="SD">Segunda Division</option>
+      </optgroup>
 
-<div id="fixturesStatus" class="status">
-Choose a league and load fixtures.
-</div>
+      <optgroup label="🇩🇪 Germany">
+        <option value="BL1">Bundesliga</option>
+        <option value="BL2">2. Bundesliga</option>
+      </optgroup>
 
-</div>
+      <optgroup label="🇮🇹 Italy">
+        <option value="SA">Serie A</option>
+        <option value="SB">Serie B</option>
+      </optgroup>
 
+      <optgroup label="🇫🇷 France">
+        <option value="FL1">Ligue 1</option>
+        <option value="FL2">Ligue 2</option>
+      </optgroup>
 
-<!-- FIXTURES -->
-<div class="card">
+      <optgroup label="🇳🇱 Netherlands">
+        <option value="DED">Eredivisie</option>
+      </optgroup>
 
-<h2>📅 2. Select Fixture</h2>
+      <optgroup label="🌍 Europe">
+        <option value="CL">Champions League</option>
+      </optgroup>
+    </select>
 
-<label>Fixture</label>
+  </div>
 
-<select id="fixtureSelect">
-<option value="">-- Load fixtures first --</option>
-</select>
+  <!-- MATCH -->
+  <div class="card">
 
-<div id="selectedFixture" class="status">
-No fixture selected.
-</div>
+    <label>Select Match</label>
 
-</div>
+    <select id="matchSelect">
+      <option value="">Loading matches...</option>
+    </select>
 
+    <div id="matchInfo" style="margin-top:15px;"></div>
 
-<!-- ANALYZE -->
-<div class="card">
+  </div>
 
-<h2>🔎 3. Analyze Match</h2>
-
-<button id="analyzeButton">
-ANALYZE MATCH
-</button>
-
-<div id="analysisStatus" class="status"></div>
-
-</div>
-
-
-<!-- TEAM STATS -->
-<div id="statsCard" class="card hidden">
-
-<h2>📊 Recent Form</h2>
-
-<div class="grid">
-
-<div>
-<h3 id="statsHomeTeam">Home</h3>
-<div id="homeStats"></div>
-</div>
-
-<div>
-<h3 id="statsAwayTeam">Away</h3>
-<div id="awayStats"></div>
-</div>
+  <div id="analysis"></div>
 
 </div>
-
-</div>
-
-
-<!-- INJURIES -->
-<div class="card">
-
-<h2>🩹 Injury Adjustment</h2>
-
-<div class="grid">
-
-<div>
-<label>Home attack injuries</label>
-<input id="homeAttackInjuries" type="number" min="0" max="5" value="0">
-</div>
-
-<div>
-<label>Away attack injuries</label>
-<input id="awayAttackInjuries" type="number" min="0" max="5" value="0">
-</div>
-
-<div>
-<label>Home defense injuries</label>
-<input id="homeDefenseInjuries" type="number" min="0" max="5" value="0">
-</div>
-
-<div>
-<label>Away defense injuries</label>
-<input id="awayDefenseInjuries" type="number" min="0" max="5" value="0">
-</div>
-
-</div>
-
-</div>
-
-
-<!-- RESULTS -->
-<div id="resultsCard" class="card hidden">
-
-<h2>🎯 Prediction</h2>
-
-<div id="matchTitle" class="subtitle"></div>
-
-<div id="injuryMessage"></div>
-
-<div class="resultGrid">
-
-<div class="resultBox">
-<div class="small">HOME WIN</div>
-<div id="homeWinProb" class="big green">0%</div>
-</div>
-
-<div class="resultBox">
-<div class="small">DRAW</div>
-<div id="drawProb" class="big yellow">0%</div>
-</div>
-
-<div class="resultBox">
-<div class="small">AWAY WIN</div>
-<div id="awayWinProb" class="big red">0%</div>
-</div>
-
-</div>
-
-
-<div class="grid" style="margin-top:12px">
-
-<div class="resultBox">
-<div class="small">HOME xG</div>
-<div id="homeXG" class="big">0.00</div>
-</div>
-
-<div class="resultBox">
-<div class="small">TOTAL xG</div>
-<div id="totalXG" class="big">0.00</div>
-</div>
-
-<div class="resultBox">
-<div class="small">AWAY xG</div>
-<div id="awayXG" class="big">0.00</div>
-</div>
-
-</div>
-
-
-<h3>⭐ Main Score Prediction</h3>
-
-<div id="mainScore" class="score">-</div>
-
-<div id="mainScoreProbability" class="status" style="text-align:center">
--
-</div>
-
-
-<h3>🎯 Other Possible Scores</h3>
-
-<div class="grid">
-
-<div class="resultBox">
-<div id="score2" class="big">-</div>
-<div id="score2Prob" class="small">-</div>
-</div>
-
-<div class="resultBox">
-<div id="score3" class="big">-</div>
-<div id="score3Prob" class="small">-</div>
-</div>
-
-</div>
-
-
-<h3>📈 Pro Markets</h3>
-
-<div class="statRow">
-<span>Over 2.5</span>
-<strong id="over25">-</strong>
-</div>
-
-<div class="statRow">
-<span>Under 2.5</span>
-<strong id="under25">-</strong>
-</div>
-
-<div class="statRow">
-<span>BTTS Yes</span>
-<strong id="bttsYes">-</strong>
-</div>
-
-<div class="statRow">
-<span>BTTS No</span>
-<strong id="bttsNo">-</strong>
-</div>
-
-<div class="statRow">
-<span>Home to Score</span>
-<strong id="homeToScore">-</strong>
-</div>
-
-<div class="statRow">
-<span>Away to Score</span>
-<strong id="awayToScore">-</strong>
-</div>
-
-<div class="statRow">
-<span>Home Clean Sheet</span>
-<strong id="homeCleanSheet">-</strong>
-</div>
-
-<div class="statRow">
-<span>Away Clean Sheet</span>
-<strong id="awayCleanSheet">-</strong>
-</div>
-
-
-<h3>🧠 Match Summary</h3>
-
-<div id="summary" class="status"></div>
-
-</div>
-
-</div>
-
 
 <script>
 
-let currentMatches=[];
-let selectedMatch=null;
+let currentMatches = [];
 
-const leagueNames={
-PL:"Premier League",
-PD:"La Liga",
-BL1:"Bundesliga",
-SA:"Serie A",
-FL1:"Ligue 1",
-DED:"Eredivisie",
-PPL:"Primeira Liga",
-CL:"Champions League"
-};
+const leagueSelect = document.getElementById("leagueSelect");
+const matchSelect = document.getElementById("matchSelect");
+const matchInfo = document.getElementById("matchInfo");
+const analysis = document.getElementById("analysis");
 
 
-function $(id){
-return document.getElementById(id);
+// -----------------------------
+// LOAD FIXTURES
+// -----------------------------
+
+async function loadFixtures() {
+
+  matchSelect.innerHTML =
+    '<option value="">Loading matches...</option>';
+
+  matchInfo.innerHTML = "";
+  analysis.innerHTML = "";
+
+  try {
+
+    const league = leagueSelect.value;
+
+    const response = await fetch(
+      "/api/football?league=" +
+      encodeURIComponent(league) +
+      "&t=" +
+      Date.now(),
+      {
+        cache: "no-store"
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(
+        data.error || "Could not load matches"
+      );
+    }
+
+    currentMatches = data.matches || [];
+
+    const upcoming = currentMatches
+      .filter(m =>
+        m.status !== "FINISHED" &&
+        m.homeTeam &&
+        m.awayTeam
+      )
+      .sort(
+        (a,b) =>
+        new Date(a.utcDate) -
+        new Date(b.utcDate)
+      );
+
+    if (!upcoming.length) {
+
+      matchSelect.innerHTML =
+        '<option value="">No upcoming matches found</option>';
+
+      return;
+    }
+
+    matchSelect.innerHTML =
+      '<option value="">Choose a match</option>';
+
+    upcoming.forEach((match, index) => {
+
+      const option =
+        document.createElement("option");
+
+      option.value = match.id;
+
+      option.textContent =
+        match.homeTeam.name +
+        " vs " +
+        match.awayTeam.name;
+
+      matchSelect.appendChild(option);
+
+    });
+
+    // Store upcoming matches
+    matchSelect._fixtures = upcoming;
+
+  } catch (error) {
+
+    matchSelect.innerHTML =
+      '<option value="">Error loading matches</option>';
+
+    analysis.innerHTML =
+      '<div class="card error">' +
+      error.message +
+      '</div>';
+  }
 }
 
 
-function poisson(k,lambda){
+// -----------------------------
+// TEAM NAME
+// -----------------------------
 
-if(lambda<=0)return k===0?1:0;
+function sameTeam(a,b) {
 
-let result=Math.exp(-lambda);
+  if (!a || !b) return false;
 
-for(let i=1;i<=k;i++){
-result*=lambda/i;
-}
-
-return result;
-}
-
-
-function clamp(value,min,max){
-return Math.max(min,Math.min(max,value));
+  return (
+    a.toLowerCase().trim() ===
+    b.toLowerCase().trim()
+  );
 }
 
 
-function normalize(name){
+// -----------------------------
+// TEAM FORM
+// -----------------------------
 
-return String(name||"")
-.toLowerCase()
-.replace(/[^a-z0-9]/g,"");
+function getTeamForm(teamName) {
+
+  const games = currentMatches
+    .filter(m => m.status === "FINISHED")
+    .filter(m =>
+      sameTeam(m.homeTeam?.name, teamName) ||
+      sameTeam(m.awayTeam?.name, teamName)
+    )
+    .sort(
+      (a,b) =>
+      new Date(b.utcDate) -
+      new Date(a.utcDate)
+    )
+    .slice(0,5);
+
+  return games.map(match => {
+
+    const home = match.homeTeam.name;
+    const away = match.awayTeam.name;
+
+    const hg = match.score.fullTime.home ?? 0;
+    const ag = match.score.fullTime.away ?? 0;
+
+    const isHome = sameTeam(home, teamName);
+
+    const teamGoals =
+      isHome ? hg : ag;
+
+    const opponentGoals =
+      isHome ? ag : hg;
+
+    if (teamGoals > opponentGoals)
+      return "W";
+
+    if (teamGoals < opponentGoals)
+      return "L";
+
+    return "D";
+
+  }).reverse();
 }
 
 
-function calculateStats(team){
+// -----------------------------
+// FORM DISPLAY
+// -----------------------------
 
-const matches=currentMatches
-.filter(m=>m.status==="FINISHED")
-.sort((a,b)=>new Date(b.utcDate)-new Date(a.utcDate));
+function formHTML(teamName) {
 
-const recent=[];
+  const form = getTeamForm(teamName);
 
-for(const m of matches){
+  if (!form.length) {
+    return `
+      <div class="form-row">
+        <span class="small">No recent data</span>
+      </div>
+    `;
+  }
 
-const home=normalize(m.homeTeam?.name);
-const away=normalize(m.awayTeam?.name);
-const target=normalize(team);
+  return `
+    <div class="form-row">
+      ${form.map(x => {
 
-if(home!==target && away!==target)continue;
+        const cls =
+          x === "W"
+          ? "win"
+          : x === "L"
+          ? "loss"
+          : "draw";
 
-const hg=m.score?.fullTime?.home;
-const ag=m.score?.fullTime?.away;
+        return `
+          <span class="form-letter ${cls}">
+            ${x}
+          </span>
+        `;
 
-if(hg==null || ag==null)continue;
-
-let gf=0;
-let ga=0;
-let result="D";
-
-if(home===target){
-
-gf=hg;
-ga=ag;
-
-if(hg>ag)result="W";
-if(hg<ag)result="L";
-
-}else{
-
-gf=ag;
-ga=hg;
-
-if(ag>hg)result="W";
-if(ag<hg)result="L";
-
-}
-
-recent.push({
-gf,
-ga,
-result,
-clean:ga===0,
-btts:hg>0&&ag>0,
-over:hg+ag>2
-});
-
-if(recent.length>=5)break;
+      }).join("")}
+    </div>
+  `;
 }
 
 
-if(!recent.length){
+// -----------------------------
+// TEAM STATS
+// -----------------------------
 
-return{
-games:0,
-wins:0,
-draws:0,
-losses:0,
-gf:1.35,
-ga:1.35,
-avgGF:1.35,
-avgGA:1.35,
-clean:0,
-btts:0,
-over:0
-};
+function getStats(teamName) {
 
+  const games = currentMatches
+    .filter(m => m.status === "FINISHED")
+    .filter(m =>
+      sameTeam(m.homeTeam?.name, teamName) ||
+      sameTeam(m.awayTeam?.name, teamName)
+    )
+    .sort(
+      (a,b) =>
+      new Date(b.utcDate) -
+      new Date(a.utcDate)
+    )
+    .slice(0,5);
+
+  let wins = 0;
+  let draws = 0;
+  let losses = 0;
+  let gf = 0;
+  let ga = 0;
+  let cleanSheets = 0;
+  let btts = 0;
+  let over25 = 0;
+
+  games.forEach(match => {
+
+    const isHome =
+      sameTeam(
+        match.homeTeam.name,
+        teamName
+      );
+
+    const homeGoals =
+      match.score.fullTime.home ?? 0;
+
+    const awayGoals =
+      match.score.fullTime.away ?? 0;
+
+    const teamGoals =
+      isHome ? homeGoals : awayGoals;
+
+    const opponentGoals =
+      isHome ? awayGoals : homeGoals;
+
+    gf += teamGoals;
+    ga += opponentGoals;
+
+    if (teamGoals > opponentGoals)
+      wins++;
+
+    else if (teamGoals === opponentGoals)
+      draws++;
+
+    else
+      losses++;
+
+    if (opponentGoals === 0)
+      cleanSheets++;
+
+    if (
+      homeGoals > 0 &&
+      awayGoals > 0
+    )
+      btts++;
+
+    if (
+      homeGoals + awayGoals > 2
+    )
+      over25++;
+
+  });
+
+  return {
+
+    games: games.length,
+    wins,
+    draws,
+    losses,
+    gf,
+    ga,
+
+    avgGF:
+      games.length
+      ? gf / games.length
+      : 1,
+
+    avgGA:
+      games.length
+      ? ga / games.length
+      : 1,
+
+    cleanSheets,
+    btts,
+    over25
+  };
 }
 
 
-let wins=0;
-let draws=0;
-let losses=0;
-let gf=0;
-let ga=0;
-let clean=0;
-let btts=0;
-let over=0;
+// -----------------------------
+// POISSON
+// -----------------------------
 
-recent.forEach(x=>{
+function poisson(k, lambda) {
 
-if(x.result==="W")wins++;
-if(x.result==="D")draws++;
-if(x.result==="L")losses++;
+  let result =
+    Math.exp(-lambda);
 
-gf+=x.gf;
-ga+=x.ga;
+  for (
+    let i = 1;
+    i <= k;
+    i++
+  ) {
+    result *= lambda / i;
+  }
 
-if(x.clean)clean++;
-if(x.btts)btts++;
-if(x.over)over++;
-
-});
-
-
-return{
-games:recent.length,
-wins,
-draws,
-losses,
-gf,
-ga,
-avgGF:gf/recent.length,
-avgGA:ga/recent.length,
-clean,
-btts,
-over
-};
-
+  return result;
 }
 
 
-function renderStats(team,stats){
+// -----------------------------
+// ANALYSIS
+// -----------------------------
 
-return `
-<div class="statRow">
-<span>Matches</span><strong>${stats.games}</strong>
-</div>
+function analyzeMatch(match) {
 
-<div class="statRow">
-<span>Wins</span><strong>${stats.wins}</strong>
-</div>
+  if (!match) return;
 
-<div class="statRow">
-<span>Draws</span><strong>${stats.draws}</strong>
-</div>
+  const home =
+    match.homeTeam.name;
 
-<div class="statRow">
-<span>Losses</span><strong>${stats.losses}</strong>
-</div>
+  const away =
+    match.awayTeam.name;
 
-<div class="statRow">
-<span>Goals For</span><strong>${stats.gf}</strong>
-</div>
+  const hs = getStats(home);
+  const as = getStats(away);
 
-<div class="statRow">
-<span>Goals Against</span><strong>${stats.ga}</strong>
-</div>
+  let homeXG =
+    (hs.avgGF + as.avgGA) / 2;
 
-<div class="statRow">
-<span>Average GF</span><strong>${stats.avgGF.toFixed(2)}</strong>
-</div>
+  let awayXG =
+    (as.avgGF + hs.avgGA) / 2;
 
-<div class="statRow">
-<span>Average GA</span><strong>${stats.avgGA.toFixed(2)}</strong>
-</div>
+  // Home advantage
+  homeXG *= 1.08;
 
-<div class="statRow">
-<span>Clean Sheets</span><strong>${stats.clean}</strong>
-</div>
+  // Form adjustment
+  homeXG *=
+    1 + ((hs.wins - 2) * 0.04);
 
-<div class="statRow">
-<span>BTTS</span><strong>${stats.btts}</strong>
-</div>
+  awayXG *=
+    1 + ((as.wins - 2) * 0.04);
 
-<div class="statRow">
-<span>Over 2.5</span><strong>${stats.over}</strong>
-</div>
-`;
+  // Keep values sensible
+  homeXG =
+    Math.max(
+      0.15,
+      Math.min(5, homeXG)
+    );
 
+  awayXG =
+    Math.max(
+      0.15,
+      Math.min(5, awayXG)
+    );
+
+  const matrix = [];
+
+  let homeWin = 0;
+  let draw = 0;
+  let awayWin = 0;
+
+  let over25 = 0;
+  let under25 = 0;
+
+  let bttsYes = 0;
+  let bttsNo = 0;
+
+  let homeScore = 0;
+  let awayScore = 0;
+
+  let homeClean = 0;
+  let awayClean = 0;
+
+  for (
+    let h = 0;
+    h <= 8;
+    h++
+  ) {
+
+    for (
+      let a = 0;
+      a <= 8;
+      a++
+    ) {
+
+      const probability =
+        poisson(h, homeXG) *
+        poisson(a, awayXG);
+
+      matrix.push({
+        h,
+        a,
+        probability
+      });
+
+      if (h > a)
+        homeWin += probability;
+
+      else if (h === a)
+        draw += probability;
+
+      else
+        awayWin += probability;
+
+      if (h + a > 2)
+        over25 += probability;
+
+      else
+        under25 += probability;
+
+      if (h > 0 && a > 0)
+        bttsYes += probability;
+
+      else
+        bttsNo += probability;
+
+      if (h > 0)
+        homeScore += probability;
+
+      if (a > 0)
+        awayScore += probability;
+
+      if (a === 0)
+        homeClean += probability;
+
+      if (h === 0)
+        awayClean += probability;
+    }
+  }
+
+  const normalize = x =>
+    Math.round(x * 100);
+
+  const outcomes = [
+
+    {
+      name: "Home win",
+      value: homeWin
+    },
+
+    {
+      name: "Draw",
+      value: draw
+    },
+
+    {
+      name: "Away win",
+      value: awayWin
+    },
+
+    {
+      name: "Over 2.5",
+      value: over25
+    },
+
+    {
+      name: "Under 2.5",
+      value: under25
+    },
+
+    {
+      name: "Both score",
+      value: bttsYes
+    },
+
+    {
+      name: "Both don't score",
+      value: bttsNo
+    },
+
+    {
+      name: home + " scores",
+      value: homeScore
+    },
+
+    {
+      name: away + " scores",
+      value: awayScore
+    }
+
+  ];
+
+  // Strongest model signal
+  const hot =
+    outcomes.reduce(
+      (best,current) =>
+        current.value > best.value
+        ? current
+        : best
+    );
+
+  // Top exact scores
+  matrix.sort(
+    (a,b) =>
+    b.probability -
+    a.probability
+  );
+
+  const topScores =
+    matrix.slice(0,3);
+
+  displayAnalysis(
+    home,
+    away,
+    hs,
+    as,
+    homeXG,
+    awayXG,
+    outcomes,
+    hot,
+    topScores,
+    {
+      homeClean,
+      awayClean
+    }
+  );
 }
 
 
-async function loadFixtures(){
+// -----------------------------
+// DISPLAY
+// -----------------------------
 
-const league=$("leagueSelect").value;
+function displayAnalysis(
+  home,
+  away,
+  hs,
+  as,
+  homeXG,
+  awayXG,
+  outcomes,
+  hot,
+  topScores,
+  clean
+) {
 
-$("fixturesStatus").textContent=
-"Loading "+leagueNames[league]+"...";
+  analysis.innerHTML = `
 
-$("fixtureSelect").innerHTML=
-"<option>Loading fixtures...</option>";
+    <!-- FORM -->
 
-try{
+    <div class="card">
 
-const response=await fetch(
-"/api/football?league="+
-encodeURIComponent(league)+
-"&t="+Date.now(),
-{
-cache:"no-store"
+      <div class="section-title">
+        📊 Recent Form
+      </div>
+
+      <div class="form-grid">
+
+        <div class="form-box">
+
+          <div class="team-name">
+            ${home}
+          </div>
+
+          ${formHTML(home)}
+
+        </div>
+
+        <div class="form-box">
+
+          <div class="team-name">
+            ${away}
+          </div>
+
+          ${formHTML(away)}
+
+        </div>
+
+      </div>
+
+      <div class="small" style="margin-top:10px;text-align:center;">
+        🟩 Win &nbsp; 🟥 Loss &nbsp; ⬜ Draw
+      </div>
+
+    </div>
+
+
+    <!-- HOT -->
+
+    <div class="card hot">
+
+      <div class="hot-title">
+        🔥 HOT
+      </div>
+
+      <div class="hot-name">
+        ${hot.name}
+      </div>
+
+      <div class="hot-percent">
+        ${Math.round(hot.value * 100)}%
+      </div>
+
+      <div class="hot-note">
+        Strongest calculated signal from the available model.
+        Not a guaranteed result.
+      </div>
+
+    </div>
+
+
+    <!-- POSSIBLE OUTCOMES -->
+
+    <div class="card">
+
+      <div class="section-title">
+        🎯 Possible Outcomes
+      </div>
+
+      <div class="result-grid">
+
+        ${outcomes.map(o => `
+
+          <div class="result-box">
+
+            <div class="result-name">
+              ${o.name}
+            </div>
+
+            <div class="result-value">
+              ${Math.round(o.value * 100)}%
+            </div>
+
+          </div>
+
+        `).join("")}
+
+      </div>
+
+    </div>
+
+
+    <!-- LIKELY SCORES -->
+
+    <div class="card">
+
+      <div class="section-title">
+        ⚽ Likely Scores
+      </div>
+
+      <div class="score-grid">
+
+        ${topScores.map(s => `
+
+          <div class="score">
+
+            ${s.h} - ${s.a}
+
+            <div class="small">
+              ${Math.round(
+                s.probability * 100
+              )}%
+            </div>
+
+          </div>
+
+        `).join("")}
+
+      </div>
+
+    </div>
+
+
+    <!-- TEAM NUMBERS -->
+
+    <div class="card">
+
+      <div class="section-title">
+        📈 Last 5 Games
+      </div>
+
+      <table class="stats">
+
+        <tr>
+          <th></th>
+          <th>${home}</th>
+          <th>${away}</th>
+        </tr>
+
+        <tr>
+          <td>Wins</td>
+          <td>${hs.wins}</td>
+          <td>${as.wins}</td>
+        </tr>
+
+        <tr>
+          <td>Draws</td>
+          <td>${hs.draws}</td>
+          <td>${as.draws}</td>
+        </tr>
+
+        <tr>
+          <td>Losses</td>
+          <td>${hs.losses}</td>
+          <td>${as.losses}</td>
+        </tr>
+
+        <tr>
+          <td>Goals For</td>
+          <td>${hs.gf}</td>
+          <td>${as.gf}</td>
+        </tr>
+
+        <tr>
+          <td>Goals Against</td>
+          <td>${hs.ga}</td>
+          <td>${as.ga}</td>
+        </tr>
+
+        <tr>
+          <td>Clean Sheets</td>
+          <td>${hs.cleanSheets}</td>
+          <td>${as.cleanSheets}</td>
+        </tr>
+
+        <tr>
+          <td>BTTS</td>
+          <td>${hs.btts}/5</td>
+          <td>${as.btts}/5</td>
+        </tr>
+
+        <tr>
+          <td>Over 2.5</td>
+          <td>${hs.over25}/5</td>
+          <td>${as.over25}/5</td>
+        </tr>
+
+      </table>
+
+    </div>
+
+
+    <!-- EXPECTED GOALS -->
+
+    <div class="card">
+
+      <div class="section-title">
+        📊 Expected Goals
+      </div>
+
+      <div class="result-grid">
+
+        <div class="result-box">
+          <div class="result-name">
+            ${home}
+          </div>
+          <div class="result-value">
+            ${homeXG.toFixed(2)}
+          </div>
+        </div>
+
+        <div class="result-box">
+          <div class="result-name">
+            Total xG
+          </div>
+          <div class="result-value">
+            ${(homeXG + awayXG).toFixed(2)}
+          </div>
+        </div>
+
+        <div class="result-box">
+          <div class="result-name">
+            ${away}
+          </div>
+          <div class="result-value">
+            ${awayXG.toFixed(2)}
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="small" style="text-align:center;">
+        ⚠️ Predictions are statistical estimates based on available
+        match data. They are not guaranteed results.
+      </div>
+
+    </div>
+
+  `;
 }
+
+
+// -----------------------------
+// MATCH SELECTED
+// -----------------------------
+
+matchSelect.addEventListener(
+  "change",
+  function() {
+
+    const id =
+      Number(this.value);
+
+    const fixtures =
+      this._fixtures || [];
+
+    const match =
+      fixtures.find(
+        m => m.id === id
+      );
+
+    if (!match) {
+
+      matchInfo.innerHTML = "";
+      analysis.innerHTML = "";
+
+      return;
+    }
+
+    const date =
+      new Date(
+        match.utcDate
+      ).toLocaleString();
+
+    matchInfo.innerHTML = `
+
+      <div class="match-title">
+        ${match.homeTeam.name}
+        <br>
+        vs
+        <br>
+        ${match.awayTeam.name}
+      </div>
+
+      <div class="match-date">
+        ${date}
+      </div>
+
+    `;
+
+    // Automatic analysis
+    analyzeMatch(match);
+
+  }
 );
 
-const data=await response.json();
 
-if(!response.ok){
+// -----------------------------
+// CHANGE LEAGUE
+// -----------------------------
 
-throw new Error(
-data.error||"Could not load fixtures"
-);
-
-}
-
-currentMatches=data.matches||[];
-
-const now=new Date();
-
-const fixtures=currentMatches
-.filter(m=>{
-
-return(
-(m.status==="SCHEDULED"||
-m.status==="TIMED")&&
-new Date(m.utcDate)>=now
-);
-
-})
-.sort(
-(a,b)=>
-new Date(a.utcDate)-
-new Date(b.utcDate)
-)
-.slice(0,50);
-
-
-$("fixtureSelect").innerHTML=
-'<option value="">-- Select a fixture --</option>';
-
-
-fixtures.forEach((match,index)=>{
-
-const option=document.createElement("option");
-
-option.value=index;
-
-const date=new Date(match.utcDate);
-
-option.textContent=
-match.homeTeam.name+
-" vs "+
-match.awayTeam.name+
-" — "+
-date.toLocaleString();
-
-$("fixtureSelect").appendChild(option);
-
-});
-
-
-if(fixtures.length){
-
-$("fixturesStatus").textContent=
-"Loaded "+
-fixtures.length+
-" fixtures from "+
-leagueNames[league]+". Select one below.";
-
-}else{
-
-$("fixturesStatus").textContent=
-"No upcoming fixtures found for "+
-leagueNames[league]+".";
-}
-
-
-$("fixtureSelect")._fixtures=fixtures;
-
-}catch(error){
-
-$("fixturesStatus").textContent=
-"Error: "+error.message;
-
-$("fixtureSelect").innerHTML=
-'<option value="">Could not load fixtures</option>';
-
-}
-
-}
-
-
-$("leagueSelect").addEventListener(
-"change",
-function(){
-
-selectedMatch=null;
-
-$("fixtureSelect").innerHTML=
-'<option value="">-- Load fixtures --</option>';
-
-$("selectedFixture").textContent=
-"Select Load Fixtures to get matches.";
-
-$("resultsCard").classList.add("hidden");
-
-}
+leagueSelect.addEventListener(
+  "change",
+  loadFixtures
 );
 
 
-$("loadFixtures").addEventListener(
-"click",
-loadFixtures
-);
-
-
-$("fixtureSelect").addEventListener(
-"change",
-function(){
-
-const index=this.value;
-
-const fixtures=this._fixtures||[];
-
-if(index===""){
-selectedMatch=null;
-
-$("selectedFixture").textContent=
-"No fixture selected.";
-
-return;
-}
-
-selectedMatch=fixtures[index];
-
-const date=new Date(
-selectedMatch.utcDate
-);
-
-$("selectedFixture").innerHTML=
-`<div class="success">
-Selected:
-<strong>
-${selectedMatch.homeTeam.name}
-vs
-${selectedMatch.awayTeam.name}
-</strong><br>
-${date.toLocaleString()}
-</div>`;
-
-}
-);
-
-
-$("analyzeButton").addEventListener(
-"click",
-analyzeMatch
-);
-
-
-function analyzeMatch(){
-
-if(!selectedMatch){
-
-$("analysisStatus").textContent=
-"Please load fixtures and select a match first.";
-
-return;
-}
-
-$("analysisStatus").textContent=
-"Calculating prediction...";
-
-const home=selectedMatch.homeTeam.name;
-const away=selectedMatch.awayTeam.name;
-
-const homeStats=calculateStats(home);
-const awayStats=calculateStats(away);
-
-$("statsHomeTeam").textContent=home;
-$("statsAwayTeam").textContent=away;
-
-$("homeStats").innerHTML=
-renderStats(home,homeStats);
-
-$("awayStats").innerHTML=
-renderStats(away,awayStats);
-
-$("statsCard").classList.remove("hidden");
-
-
-let homeXG=
-(homeStats.avgGF+awayStats.avgGA)/2;
-
-let awayXG=
-(awayStats.avgGF+homeStats.avgGA)/2;
-
-
-/* HOME ADVANTAGE */
-homeXG*=1.08;
-
-
-/* FORM */
-homeXG*=
-1+(homeStats.wins-2)*0.04;
-
-awayXG*=
-1+(awayStats.wins-2)*0.04;
-
-
-/* INJURIES */
-
-const hai=
-Number($("homeAttackInjuries").value)||0;
-
-const aai=
-Number($("awayAttackInjuries").value)||0;
-
-const hdi=
-Number($("homeDefenseInjuries").value)||0;
-
-const adi=
-Number($("awayDefenseInjuries").value)||0;
-
-homeXG*=clamp(
-1-hai*0.06,
-0.65,
-1
-);
-
-awayXG*=clamp(
-1-aai*0.06,
-0.65,
-1
-);
-
-homeXG*=
-1+adi*0.05;
-
-awayXG*=
-1+hdi*0.05;
-
-
-homeXG=clamp(homeXG,0.15,5);
-awayXG=clamp(awayXG,0.15,5);
-
-
-const matrix=[];
-
-let homeWin=0;
-let draw=0;
-let awayWin=0;
-
-for(let h=0;h<=8;h++){
-
-for(let a=0;a<=8;a++){
-
-const probability=
-poisson(h,homeXG)*
-poisson(a,awayXG);
-
-matrix.push({
-h,
-a,
-probability
-});
-
-if(h>a)homeWin+=probability;
-if(h===a)draw+=probability;
-if(h<a)awayWin+=probability;
-
-}
-
-}
-
-
-const total=homeWin+draw+awayWin;
-
-homeWin/=total;
-draw/=total;
-awayWin/=total;
-
-
-const over25=matrix
-.filter(x=>x.h+x.a>2)
-.reduce((s,x)=>s+x.probability,0);
-
-const under25=1-over25;
-
-const bttsYes=matrix
-.filter(x=>x.h>0&&x.a>0)
-.reduce((s,x)=>s+x.probability,0);
-
-const bttsNo=1-bttsYes;
-
-const homeScore=
-1-poisson(0,homeXG);
-
-const awayScore=
-1-poisson(0,awayXG);
-
-const homeClean=
-poisson(0,awayXG);
-
-const awayClean=
-poisson(0,homeXG);
-
-
-matrix.sort(
-(a,b)=>b.probability-a.probability
-);
-
-const top=matrix.slice(0,3);
-
-
-$("matchTitle").textContent=
-home+" vs "+away;
-
-$("homeWinProb").textContent=
-Math.round(homeWin*100)+"%";
-
-$("drawProb").textContent=
-Math.round(draw*100)+"%";
-
-$("awayWinProb").textContent=
-Math.round(awayWin*100)+"%";
-
-
-$("homeXG").textContent=
-homeXG.toFixed(2);
-
-$("awayXG").textContent=
-awayXG.toFixed(2);
-
-$("totalXG").textContent=
-(homeXG+awayXG).toFixed(2);
-
-
-$("mainScore").textContent=
-top[0].h+" - "+top[0].a;
-
-$("mainScoreProbability").textContent=
-Math.round(top[0].probability*100)+"% estimated probability";
-
-
-$("score2").textContent=
-top[1].h+" - "+top[1].a;
-
-$("score2Prob").textContent=
-Math.round(top[1].probability*100)+"%";
-
-
-$("score3").textContent=
-top[2].h+" - "+top[2].a;
-
-$("score3Prob").textContent=
-Math.round(top[2].probability*100)+"%";
-
-
-$("over25").textContent=
-Math.round(over25*100)+"%";
-
-$("under25").textContent=
-Math.round(under25*100)+"%";
-
-$("bttsYes").textContent=
-Math.round(bttsYes*100)+"%";
-
-$("bttsNo").textContent=
-Math.round(bttsNo*100)+"%";
-
-$("homeToScore").textContent=
-Math.round(homeScore*100)+"%";
-
-$("awayToScore").textContent=
-Math.round(awayScore*100)+"%";
-
-$("homeCleanSheet").textContent=
-Math.round(homeClean*100)+"%";
-
-$("awayCleanSheet").textContent=
-Math.round(awayClean*100)+"%";
-
-
-let summary="";
-
-if(homeWin>awayWin && homeWin>draw){
-
-summary+=
-`The model gives the highest calculated 1X2 probability to ${home}. `;
-
-}else if(awayWin>homeWin && awayWin>draw){
-
-summary+=
-`The model gives the highest calculated 1X2 probability to ${away}. `;
-
-}else{
-
-summary+=
-`The draw has the highest calculated 1X2 probability. `;
-
-}
-
-
-if(bttsYes>=0.55){
-
-summary+=
-`BTTS Yes is calculated at ${Math.round(bttsYes*100)}%. `;
-
-}
-
-if(over25>=0.55){
-
-summary+=
-`Over 2.5 is calculated at ${Math.round(over25*100)}%. `;
-
-}
-
-
-summary+=
-`The calculated total xG is ${(homeXG+awayXG).toFixed(2)}.`;
-
-$("summary").textContent=summary;
-
-
-if(hai||aai||hdi||adi){
-
-$("injuryMessage").innerHTML=
-`<div class="warning">
-🩹 Injury adjustments applied to the model.
-</div>`;
-
-}else{
-
-$("injuryMessage").innerHTML="";
-
-}
-
-
-$("resultsCard").classList.remove("hidden");
-
-$("analysisStatus").textContent=
-"Analysis complete.";
-
-window.scrollTo({
-top:$("resultsCard").offsetTop,
-behavior:"smooth"
-});
-
-}
-
-
-/* AUTOMATIC INITIAL LOAD */
+// -----------------------------
+// START
+// -----------------------------
 
 loadFixtures();
 
