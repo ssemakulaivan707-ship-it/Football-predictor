@@ -1,0 +1,216 @@
+name: Build Football Predictor APK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download website
+        uses: actions/checkout@v4
+
+      - name: Create Android project
+        run: |
+          mkdir -p app/src/main/java/com/ssemakulaivan/footballpredictor
+          mkdir -p app/src/main/res/layout
+          mkdir -p app/src/main/res/values
+
+          cat > settings.gradle <<'EOF'
+          pluginManagement {
+              repositories {
+                  google()
+                  mavenCentral()
+                  gradlePluginPortal()
+              }
+          }
+
+          dependencyResolutionManagement {
+              repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+              repositories {
+                  google()
+                  mavenCentral()
+              }
+          }
+
+          rootProject.name = "FootballPredictor"
+          include(":app")
+          EOF
+
+          cat > build.gradle <<'EOF'
+          plugins {
+              id 'com.android.application' version '8.6.1' apply false
+          }
+          EOF
+
+          cat > gradle.properties <<'EOF'
+          org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+          android.useAndroidX=true
+          EOF
+
+          cat > app/build.gradle <<'EOF'
+          plugins {
+              id 'com.android.application'
+          }
+
+          android {
+              namespace 'com.ssemakulaivan.footballpredictor'
+              compileSdk 35
+
+              defaultConfig {
+                  applicationId 'com.ssemakulaivan.footballpredictor'
+                  minSdk 23
+                  targetSdk 35
+                  versionCode 1
+                  versionName '1.0'
+              }
+          }
+
+          dependencies {
+              implementation 'androidx.appcompat:appcompat:1.7.0'
+          }
+          EOF
+
+          cat > app/src/main/res/values/styles.xml <<'EOF'
+          <?xml version="1.0" encoding="utf-8"?>
+          <resources>
+              <style name="AppTheme" parent="android:style/Theme.Material.Light.NoActionBar">
+                  <item name="android:fontFamily">sans</item>
+                  <item name="android:statusBarColor">#1764D8</item>
+                  <item name="android:navigationBarColor">#000000</item>
+              </style>
+          </resources>
+          EOF
+
+          cat > app/src/main/res/layout/activity_main.xml <<'EOF'
+          <?xml version="1.0" encoding="utf-8"?>
+          <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+              <WebView
+                  android:id="@+id/webView"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent" />
+
+              <ProgressBar
+                  android:id="@+id/progressBar"
+                  style="?android:attr/progressBarStyleHorizontal"
+                  android:layout_width="match_parent"
+                  android:layout_height="4dp"
+                  android:layout_gravity="top"
+                  android:max="100" />
+          </FrameLayout>
+          EOF
+
+          cat > app/src/main/AndroidManifest.xml <<'EOF'
+          <?xml version="1.0" encoding="utf-8"?>
+          <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+              <uses-permission android:name="android.permission.INTERNET" />
+
+              <application
+                  android:theme="@style/AppTheme"
+                  android:label="Football Predictor"
+                  android:allowBackup="true">
+
+                  <activity
+                      android:name=".MainActivity"
+                      android:screenOrientation="portrait"
+                      android:exported="true">
+
+                      <intent-filter>
+                          <action android:name="android.intent.action.MAIN" />
+                          <category android:name="android.intent.category.LAUNCHER" />
+                      </intent-filter>
+
+                  </activity>
+
+              </application>
+          </manifest>
+          EOF
+
+          cat > app/src/main/java/com/ssemakulaivan/footballpredictor/MainActivity.java <<'EOF'
+          package com.ssemakulaivan.footballpredictor;
+
+          import android.app.Activity;
+          import android.os.Bundle;
+          import android.view.View;
+          import android.webkit.WebSettings;
+          import android.webkit.WebView;
+          import android.webkit.WebViewClient;
+          import android.widget.ProgressBar;
+
+          public class MainActivity extends Activity {
+
+              private WebView webView;
+              private ProgressBar progressBar;
+
+              @Override
+              protected void onCreate(Bundle savedInstanceState) {
+                  super.onCreate(savedInstanceState);
+                  setContentView(R.layout.activity_main);
+
+                  webView = findViewById(R.id.webView);
+                  progressBar = findViewById(R.id.progressBar);
+
+                  WebSettings settings = webView.getSettings();
+                  settings.setJavaScriptEnabled(true);
+                  settings.setDomStorageEnabled(true);
+                  settings.setDatabaseEnabled(true);
+                  settings.setUseWideViewPort(true);
+                  settings.setLoadWithOverviewMode(false);
+
+                  webView.setWebViewClient(new WebViewClient());
+
+                  webView.setWebChromeClient(
+                      new android.webkit.WebChromeClient() {
+                          @Override
+                          public void onProgressChanged(WebView view, int progress) {
+                              progressBar.setProgress(progress);
+
+                              if (progress >= 100) {
+                                  progressBar.setVisibility(View.GONE);
+                              } else {
+                                  progressBar.setVisibility(View.VISIBLE);
+                              }
+                          }
+                      }
+                  );
+
+                  webView.loadUrl(
+                      "https://football-predictor-henna-tau.vercel.app/"
+                  );
+              }
+
+              @Override
+              public void onBackPressed() {
+                  if (webView.canGoBack()) {
+                      webView.goBack();
+                  } else {
+                      super.onBackPressed();
+                  }
+              }
+          }
+          EOF
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.10'
+
+      - name: Build APK
+        run: gradle assembleDebug --no-daemon
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Football-Predictor-APK
+          path: app/build/outputs/apk/debug/app-debug.apk
